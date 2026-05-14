@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maniké — Unique Handcrafted Jewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: #0e0c0a;
+      color: #f0ebe3;
+    }
+    header {
+      text-align: center;
+      padding: 60px 20px 36px;
+      border-bottom: 1px solid #2c2820;
+    }
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: #c9a96e;
+    }
+    header p {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #7a6e62;
+      letter-spacing: 0.1em;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      padding: 18px 20px;
+      background: #111;
+      border-bottom: 1px solid #2c2820;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: #8a7d6e;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: #c9a96e; }
+    .hero {
+      text-align: center;
+      padding: 100px 20px 80px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .hero h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: #e8dfd0;
+      line-height: 1.3;
+      margin-bottom: 22px;
+    }
+    .hero p {
+      font-size: 1rem;
+      color: #7a6e62;
+      line-height: 1.9;
+      margin-bottom: 36px;
+    }
+    .btn-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 13px 34px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: #c9a96e;
+      color: #0e0c0a;
+    }
+    .btn-primary:hover { background: #a07840; }
+    .btn-secondary {
+      background: transparent;
+      color: #c9a96e;
+      border: 1px solid #3a342c;
+    }
+    .btn-secondary:hover { border-color: #c9a96e; }
+    .divider {
+      width: 50px;
+      height: 1px;
+      background: #c9a96e;
+      margin: 0 auto 80px;
+      opacity: 0.3;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #2c2820;
+      border-top: 1px solid #2c2820;
+      border-bottom: 1px solid #2c2820;
+      margin-bottom: 90px;
+    }
+    .feature {
+      background: #0e0c0a;
+      padding: 48px 36px;
+      text-align: center;
+    }
+    .feature-icon {
+      font-size: 1.2rem;
+      color: #c9a96e;
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+    .feature h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: #e8dfd0;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+    .feature p {
+      font-size: 0.82rem;
+      color: #6a5f52;
+      line-height: 1.8;
+    }
+    .cta {
+      text-align: center;
+      padding: 0 20px 100px;
+    }
+    .cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: #c9a96e;
+      margin-bottom: 14px;
+      letter-spacing: 0.08em;
+    }
+    .cta p {
+      font-size: 0.85rem;
+      color: #6a5f52;
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    footer {
+      text-align: center;
+      padding: 36px 20px;
+      color: #3a342c;
+      font-size: 0.78rem;
+      border-top: 1px solid #1a1612;
+    }
+    @media (max-width: 640px) {
+      .features { grid-template-columns: 1fr; }
+      header h1 { font-size: 2.4rem; }
+      .hero h2 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Maniké</h1>
+    <p>Unique Handcrafted Jewelry</p>
+  </header>
+
+  <nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="collection.html">Collection</a>
+    <a href="unique.html">Unique Pieces</a>
+    <a href="story.html">Our Story</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <h2>Jewelry made to be remembered</h2>
+    <p>Each Maniké piece is handcrafted in silver with carefully chosen gemstones — designed for those who wear their story.</p>
+    <div class="btn-row">
+      <a href="collection.html" class="btn btn-primary">View Collection</a>
+      <a href="unique.html" class="btn btn-secondary">Unique Pieces</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="features">
+    <div class="feature">
+      <div class="feature-icon">◇</div>
+      <h3>Handcrafted</h3>
+      <p>Every piece is made by hand from start to finish. No mass production, no shortcuts.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">◇</div>
+      <h3>Gemstone first</h3>
+      <p>We choose the stone before designing the setting. The gem leads — the metal follows.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">◇</div>
+      <h3>One of a kind</h3>
+      <p>Some pieces are made once, and once only. When it's gone, it's gone.</p>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Something made just once</h2>
+    <p>Browse our Unique Pieces collection — each one exists only a single time.</p>
+    <a href="unique.html" class="btn btn-primary">See Unique Pieces</a>
+  </section>
+
+  <footer>
+    <p>© 2025 Maniké. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
