@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maniké — Our Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Jost',sans-serif;background:#0e0c0a;color:#f0ebe3;min-height:100vh;}
+  header{text-align:center;padding:50px 20px 30px;border-bottom:1px solid #2c2820;}
+  header h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;letter-spacing:0.2em;color:#c9a96e;}
+  header p{margin-top:8px;font-size:0.85rem;color:#7a6e62;letter-spacing:0.1em;}
+  nav{display:flex;justify-content:center;gap:36px;padding:18px;background:#111;border-bottom:1px solid #2c2820;}
+  nav a{text-decoration:none;color:#8a7d6e;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;}
+  nav a:hover,nav a.active{color:#c9a96e;}
+  .hero{max-width:700px;margin:80px auto 60px;padding:0 40px;text-align:center;}
+  .hero h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;line-height:1.3;color:#e8dfd0;margin-bottom:24px;}
+  .hero p{font-size:1rem;color:#8a7d6e;line-height:1.9;}
+  .divider{width:60px;height:1px;background:#c9a96e;margin:60px auto;opacity:0.4;}
+  .sections{max-width:800px;margin:0 auto;padding:0 40px 100px;}
+  .story-block{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px;}
+  .story-block.reverse{direction:rtl;}
+  .story-block.reverse > *{direction:ltr;}
+  .story-img{aspect-ratio:3/4;background:#171410;border:1px solid #2c2820;border-radius:6px;display:flex;align-items:center;justify-content:center;}
+  .story-img span{font-size:0.72rem;color:#5a4f40;letter-spacing:0.12em;text-align:center;padding:20px;}
+  .story-text h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:#c9a96e;margin-bottom:16px;letter-spacing:0.05em;}
+  .story-text p{font-size:0.9rem;color:#8a7d6e;line-height:1.9;margin-bottom:16px;}
+  .values{background:#111;border-top:1px solid #2c2820;border-bottom:1px solid #2c2820;padding:80px 40px;margin-bottom:80px;}
+  .values-inner{max-width:900px;margin:0 auto;}
+  .values h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#c9a96e;text-align:center;margin-bottom:50px;letter-spacing:0.1em;}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
+  .value-item{text-align:center;}
+  .value-icon{font-size:1.4rem;color:#c9a96e;margin-bottom:12px;opacity:0.7;}
+  .value-item h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#e8dfd0;margin-bottom:8px;letter-spacing:0.05em;}
+  .value-item p{font-size:0.82rem;color:#6a5f52;line-height:1.8;}
+  .blog{max-width:800px;margin:0 auto 100px;padding:0 40px;}
+  .blog h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#c9a96e;margin-bottom:40px;letter-spacing:0.1em;}
+  .post{border-bottom:1px solid #2c2820;padding:32px 0;}
+  .post:last-child{border-bottom:none;}
+  .post-date{font-size:0.72rem;color:#5a4f40;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
+  .post h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:#e8dfd0;margin-bottom:10px;}
+  .post p{font-size:0.85rem;color:#7a6e62;line-height:1.8;}
+  footer{text-align:center;padding:40px;color:#5a4f40;font-size:0.8rem;border-top:1px solid #2c2820;}
+  @media(max-width:640px){
+    .story-block{grid-template-columns:1fr;}
+    .story-block.reverse{direction:ltr;}
+    .values-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Maniké</h1>
+  <p>Unique Handcrafted Jewelry</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="collection.html">Collection</a>
+  <a href="unique.html">Unique Pieces</a>
+  <a href="story.html" class="active">Our Story</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<div class="hero">
+  <h2>Jewelry made to carry meaning</h2>
+  <p>Maniké was born from a belief that the most beautiful things are those made slowly, with intention — and that a piece of jewelry should feel like it was made for you alone.</p>
+</div>
+
+<div class="divider"></div>
+
+<div class="sections">
+
+  <div class="story-block">
+    <div class="story-img"><span>Photo coming soon</span></div>
+    <div class="story-text">
+      <h3>Where it began</h3>
+      <p>Maniké started with a fascination for gemstones — the way light moves through a moonstone, the depth of colour in a raw sapphire, the warmth of a hand-polished garnet.</p>
+      <p>Each piece begins with a stone chosen for its character, not its perfection. The silver is then shaped around it — not to display it, but to protect it.</p>
+    </div>
+  </div>
+
+  <div class="story-block reverse">
+    <div class="story-img"><span>Photo coming soon</span></div>
+    <div class="story-text">
+      <h3>The craft</h3>
+      <p>Every Maniké piece is made by hand. No casting lines, no machine-stamped settings. The marks of the maker are part of the design.</p>
+      <p>We work primarily in sterling silver — a material that ages beautifully, holds fine detail, and lets the gemstone remain the focus. Gold collections are coming.</p>
+    </div>
+  </div>
+
+  <div class="story-block">
+    <div class="story-img"><span>Photo coming soon</span></div>
+    <div class="story-text">
+      <h3>Unique pieces</h3>
+      <p>Some pieces in our collection are made once, and once only. A stone that will never be found again, a form that came together in a single session at the bench.</p>
+      <p>When it's gone, it's gone — and that rarity is the point. These pieces are for people who want to wear something that belongs entirely to them.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="values">
+  <div class="values-inner">
+    <h2>What we believe</h2>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-icon">◇</div>
+        <h4>Made by hand</h4>
+        <p>Every piece is handcrafted from start to finish. No shortcuts, no shortcuts, no mass production.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">◇</div>
+        <h4>Gemstone first</h4>
+        <p>We choose the stone before designing the setting. The gem leads — the metal follows.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">◇</div>
+        <h4>Made to last</h4>
+        <p>Sterling silver cared for properly lasts generations. We design pieces meant to be passed on.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="blog">
+  <h2>From the studio</h2>
+
+  <div class="post">
+    <div class="post-date">May 2025 &nbsp;·&nbsp; First post</div>
+    <h3>Maniké is open</h3>
+    <p>After months of work at the bench, the first collection is ready. Each piece in this launch has been made by hand — some will be restocked, some exist only once. We're starting small and growing slowly, the right way.</p>
+  </div>
+
+  <div class="post">
+    <div class="post-date">Coming soon</div>
+    <h3>On choosing gemstones</h3>
+    <p>A post about what we look for when selecting stones — why we prefer raw and semi-polished gems, and what makes a moonstone different from every other moonstone.</p>
+  </div>
+
+  <div class="post">
+    <div class="post-date">Coming soon</div>
+    <h3>Caring for your silver jewelry</h3>
+    <p>Silver tarnishes — that's not a flaw, it's a property. Here's how to keep your Maniké pieces looking their best for years to come.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 Maniké. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
