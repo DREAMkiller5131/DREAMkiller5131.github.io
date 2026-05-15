@@ -7,174 +7,60 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Jost', sans-serif;
-      background: #0e0c0a;
-      color: #f0ebe3;
-    }
-    header {
-      text-align: center;
-      padding: 60px 20px 36px;
-      border-bottom: 1px solid #2c2820;
-    }
-    header h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.2rem;
-      font-weight: 300;
-      letter-spacing: 0.2em;
-      color: #c9a96e;
-    }
-    header p {
-      margin-top: 10px;
-      font-size: 0.85rem;
-      color: #7a6e62;
-      letter-spacing: 0.1em;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 36px;
-      padding: 18px 20px;
-      background: #111;
-      border-bottom: 1px solid #2c2820;
-      flex-wrap: wrap;
-    }
-    nav a {
-      text-decoration: none;
-      color: #8a7d6e;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    nav a:hover, nav a.active { color: #c9a96e; }
-    .hero {
-      text-align: center;
-      padding: 100px 20px 80px;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .hero h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem;
-      font-weight: 300;
-      color: #e8dfd0;
-      line-height: 1.3;
-      margin-bottom: 22px;
-    }
-    .hero p {
-      font-size: 1rem;
-      color: #7a6e62;
-      line-height: 1.9;
-      margin-bottom: 36px;
-    }
-    .btn-row {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-block;
-      padding: 13px 34px;
-      text-decoration: none;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border-radius: 3px;
-      transition: all 0.2s;
-    }
-    .btn-primary {
-      background: #c9a96e;
-      color: #0e0c0a;
-    }
-    .btn-primary:hover { background: #a07840; }
-    .btn-secondary {
-      background: transparent;
-      color: #c9a96e;
-      border: 1px solid #3a342c;
-    }
-    .btn-secondary:hover { border-color: #c9a96e; }
-    .divider {
-      width: 50px;
-      height: 1px;
-      background: #c9a96e;
-      margin: 0 auto 80px;
-      opacity: 0.3;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: #2c2820;
-      border-top: 1px solid #2c2820;
-      border-bottom: 1px solid #2c2820;
-      margin-bottom: 90px;
-    }
-    .feature {
-      background: #0e0c0a;
-      padding: 48px 36px;
-      text-align: center;
-    }
-    .feature-icon {
-      font-size: 1.2rem;
-      color: #c9a96e;
-      margin-bottom: 16px;
-      opacity: 0.6;
-    }
-    .feature h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      font-weight: 400;
-      color: #e8dfd0;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-    }
-    .feature p {
-      font-size: 0.82rem;
-      color: #6a5f52;
-      line-height: 1.8;
-    }
-    .cta {
-      text-align: center;
-      padding: 0 20px 100px;
-    }
-    .cta h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.9rem;
-      font-weight: 300;
-      color: #c9a96e;
-      margin-bottom: 14px;
-      letter-spacing: 0.08em;
-    }
-    .cta p {
-      font-size: 0.85rem;
-      color: #6a5f52;
-      margin-bottom: 28px;
-      line-height: 1.8;
-    }
-    footer {
-      text-align: center;
-      padding: 36px 20px;
-      color: #3a342c;
-      font-size: 0.78rem;
-      border-top: 1px solid #1a1612;
-    }
-    @media (max-width: 640px) {
-      .features { grid-template-columns: 1fr; }
-      header h1 { font-size: 2.4rem; }
-      .hero h2 { font-size: 1.9rem; }
-    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Jost',sans-serif;background:#0e0c0a;color:#f0ebe3;}
+
+    /* ── Background slideshow ── */
+    .bg-slideshow{position:fixed;inset:0;z-index:0;pointer-events:none;}
+    .bg-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2s ease-in-out;}
+    .bg-slide.active{opacity:1;}
+    .bg-overlay{position:absolute;inset:0;background:rgba(14,12,10,0.82);}
+
+    /* ── All page content sits above bg ── */
+    header,nav,.hero-wrap,.divider,.features,.cta,footer{position:relative;z-index:1;}
+
+    header{text-align:center;padding:60px 20px 36px;border-bottom:1px solid rgba(44,40,32,0.6);background:rgba(14,12,10,0.5);}
+    header h1{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:300;letter-spacing:0.2em;color:#c9a96e;}
+    header p{margin-top:10px;font-size:0.85rem;color:#7a6e62;letter-spacing:0.1em;}
+    nav{display:flex;justify-content:center;gap:36px;padding:18px 20px;background:rgba(10,10,8,0.7);border-bottom:1px solid rgba(44,40,32,0.5);flex-wrap:wrap;backdrop-filter:blur(4px);}
+    nav a{text-decoration:none;color:#8a7d6e;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s;}
+    nav a:hover,nav a.active{color:#c9a96e;}
+
+    .hero-wrap{text-align:center;padding:110px 20px 90px;}
+    .hero{max-width:680px;margin:0 auto;}
+    .hero h2{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#f0ebe3;line-height:1.3;margin-bottom:22px;text-shadow:0 2px 20px rgba(0,0,0,0.6);}
+    .hero p{font-size:1rem;color:#a89880;line-height:1.9;margin-bottom:36px;}
+    .btn-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+    .btn{display:inline-block;padding:13px 34px;text-decoration:none;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+    .btn-primary{background:#c9a96e;color:#0e0c0a;}
+    .btn-primary:hover{background:#a07840;}
+    .btn-secondary{background:rgba(14,12,10,0.5);color:#c9a96e;border:1px solid #5a4a38;backdrop-filter:blur(4px);}
+    .btn-secondary:hover{border-color:#c9a96e;background:rgba(14,12,10,0.7);}
+
+    /* Sold label strip below hero */
+    .sold-label{text-align:center;padding:0 20px 60px;font-size:0.72rem;color:#4a3f34;letter-spacing:0.2em;text-transform:uppercase;}
+
+    .divider{width:50px;height:1px;background:#c9a96e;margin:0 auto 80px;opacity:0.25;}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(44,40,32,0.4);border-top:1px solid rgba(44,40,32,0.5);border-bottom:1px solid rgba(44,40,32,0.5);margin-bottom:90px;}
+    .feature{background:rgba(14,12,10,0.75);padding:48px 36px;text-align:center;backdrop-filter:blur(2px);}
+    .feature-icon{font-size:1.2rem;color:#c9a96e;margin-bottom:16px;opacity:0.6;}
+    .feature h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:#e8dfd0;margin-bottom:10px;letter-spacing:0.05em;}
+    .feature p{font-size:0.82rem;color:#6a5f52;line-height:1.8;}
+    .cta{text-align:center;padding:0 20px 100px;}
+    .cta h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:#c9a96e;margin-bottom:14px;letter-spacing:0.08em;}
+    .cta p{font-size:0.85rem;color:#6a5f52;margin-bottom:28px;line-height:1.8;}
+    footer{text-align:center;padding:36px 20px;color:#3a342c;font-size:0.78rem;border-top:1px solid rgba(26,22,18,0.8);background:rgba(10,8,6,0.6);}
+    @media(max-width:640px){.features{grid-template-columns:1fr;}header h1{font-size:2.4rem;}.hero h2{font-size:2rem;}}
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Maniké</h1>
-    <p>Unique Handcrafted Jewelry</p>
-  </header>
+  <!-- Background slideshow -->
+  <div class="bg-slideshow" id="bg-slideshow">
+    <div class="bg-overlay"></div>
+  </div>
 
+  <header><h1>Maniké</h1><p>Unique Handcrafted Jewelry</p></header>
   <nav>
     <a href="index.html" class="active">Home</a>
     <a href="collection.html">Collection</a>
@@ -183,44 +69,66 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <section class="hero">
-    <h2>Jewelry made to be remembered</h2>
-    <p>Each Maniké piece is handcrafted in silver with carefully chosen gemstones — designed for those who wear their story.</p>
-    <div class="btn-row">
-      <a href="collection.html" class="btn btn-primary">View Collection</a>
-      <a href="unique.html" class="btn btn-secondary">Unique Pieces</a>
+  <div class="hero-wrap">
+    <div class="hero">
+      <h2>Jewelry made to be remembered</h2>
+      <p>Each Maniké piece is handcrafted in silver with carefully chosen gemstones — designed for those who wear their story.</p>
+      <div class="btn-row">
+        <a href="collection.html" class="btn btn-primary">View Collection</a>
+        <a href="unique.html" class="btn btn-secondary">Unique Pieces</a>
+      </div>
     </div>
-  </section>
+  </div>
+
+  <div class="sold-label" id="sold-label"></div>
 
   <div class="divider"></div>
-
   <section class="features">
-    <div class="feature">
-      <div class="feature-icon">◇</div>
-      <h3>Handcrafted</h3>
-      <p>Every piece is made by hand from start to finish. No mass production, no shortcuts.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">◇</div>
-      <h3>Gemstone first</h3>
-      <p>We choose the stone before designing the setting. The gem leads — the metal follows.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">◇</div>
-      <h3>One of a kind</h3>
-      <p>Some pieces are made once, and once only. When it's gone, it's gone.</p>
-    </div>
+    <div class="feature"><div class="feature-icon">◇</div><h3>Handcrafted</h3><p>Every piece is made by hand from start to finish. No mass production, no shortcuts.</p></div>
+    <div class="feature"><div class="feature-icon">◇</div><h3>Gemstone first</h3><p>We choose the stone before designing the setting. The gem leads — the metal follows.</p></div>
+    <div class="feature"><div class="feature-icon">◇</div><h3>One of a kind</h3><p>Some pieces are made once, and once only. When it's gone, it's gone.</p></div>
   </section>
-
   <section class="cta">
     <h2>Something made just once</h2>
     <p>Browse our Unique Pieces collection — each one exists only a single time.</p>
-    <a href="unique.html" class="btn btn-primary">See Unique Pieces</a>
+    <a href="unique.html" class="btn btn-primary">Unique Pieces</a>
   </section>
+  <footer><p>© 2026 Maniké. All rights reserved.</p></footer>
 
-  <footer>
-    <p>© 2026 Maniké. All rights reserved.</p>
-  </footer>
+<script>
+(function(){
+  const images = [];
+  const container = document.getElementById('bg-slideshow');
+  const overlay = container.querySelector('.bg-overlay');
+  const soldLabel = document.getElementById('sold-label');
 
+  if (!images.length) return;
+
+  // Shuffle
+  const shuffled = images.slice().sort(() => Math.random() - 0.5);
+
+  // Build slide elements
+  const slides = shuffled.map(src => {
+    const div = document.createElement('div');
+    div.className = 'bg-slide';
+    div.style.backgroundImage = 'url(' + src + ')';
+    container.insertBefore(div, overlay);
+    return div;
+  });
+
+  let current = 0;
+  slides[0].classList.add('active');
+  if (images.length >= 2) soldLabel.textContent = 'Previously sold pieces';
+
+  function next() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  // Change every 5 seconds — slow, atmospheric
+  setInterval(next, 5000);
+})();
+</' + 'script>
 </body>
 </html>

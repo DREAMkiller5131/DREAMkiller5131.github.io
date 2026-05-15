@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maniké — Unique Pieces</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -12,39 +11,31 @@ body{font-family:'Jost',sans-serif;background:#0e0c0a;color:#f0ebe3;min-height:1
 header{text-align:center;padding:50px 20px 30px;border-bottom:1px solid #2c2820;}
 header h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;letter-spacing:0.2em;color:#c9a96e;}
 header p{margin-top:8px;font-size:0.85rem;color:#7a6e62;letter-spacing:0.1em;}
-nav{display:flex;justify-content:center;gap:36px;padding:18px;background:#111;border-bottom:1px solid #2c2820;}
+nav{display:flex;justify-content:center;gap:36px;padding:18px;background:#111;border-bottom:1px solid #2c2820;flex-wrap:wrap;}
 nav a{text-decoration:none;color:#8a7d6e;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;}
 nav a:hover,nav a.active{color:#c9a96e;}
 .page-title{text-align:center;padding:60px 20px 40px;}
 .page-title h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#c9a96e;letter-spacing:0.1em;}
-.page-title p{font-size:0.85rem;color:#7a6e62;margin-top:8px;letter-spacing:0.05em;}
+.page-title p{font-size:0.85rem;color:#7a6e62;margin-top:8px;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;max-width:1100px;margin:0 auto;padding:0 40px 80px;}
 footer{text-align:center;padding:40px;color:#5a4f40;font-size:0.8rem;border-top:1px solid #2c2820;}
 </style>
 </head>
 <body>
 <header><h1>Maniké</h1><p>Unique Handcrafted Jewelry</p></header>
-<nav>
-  <a href="index.html">Home</a>
-  <a href="collection.html">Collection</a>
-  <a href="unique.html" class="active">Unique Pieces</a>
-  <a href="story.html">Our Story</a>
-  <a href="contact.html">Contact</a>
-</nav>
+<nav><a href="index.html">Home</a><a href="collection.html">Collection</a><a href="unique.html" class="active">Unique Pieces</a><a href="story.html">Our Story</a><a href="contact.html">Contact</a></nav>
 <div class="page-title"><h2>Unique Pieces</h2><p>One of a Kind — Each piece exists only once.</p></div>
-<div class="grid"><div style="background:#171410;border:1px solid #2c2820;border-radius:8px;overflow:hidden;">
+<div class="grid"><a href="products/garnet-statement-necklace.html" style="text-decoration:none;color:inherit;display:block;background:#171410;border:1px solid #2c2820;border-radius:8px;overflow:hidden;transition:border-color 0.2s;" onmouseenter="this.style.borderColor='#5a4a38'" onmouseleave="this.style.borderColor='#2c2820'">
       <div style="position:relative;"><div style="width:100%;aspect-ratio:1;background:#1a1712;display:flex;align-items:center;justify-content:center;"><span style="color:#5a4f40;font-size:0.75rem;letter-spacing:0.1em;">Photo coming soon</span></div></div>
-      <div style="padding:20px;">
+      <div style="padding:18px;">
         <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:4px;">Garnet Statement Necklace</div>
         <div style="font-size:0.75rem;color:#7a6e62;margin-bottom:10px;">Necklace · Silver · Garnet</div>
-        <div style="font-size:0.82rem;color:#8a7d6e;line-height:1.6;margin-bottom:12px;">One of a kind hand-forged silver necklace with a raw garnet centrepiece. This exact piece will never be made again.</div>
         <div style="display:flex;align-items:center;gap:10px;">
           <span style="color:#c9a96e;font-size:1rem;">LKR 22,000</span>
           
         </div>
         <div style="margin-top:8px;"><span style="background:#1a1430;color:#9b8ed4;border:1px solid #3d2e6e;padding:3px 10px;font-size:0.68rem;border-radius:20px;letter-spacing:0.08em;">One of a Kind</span></div>
       </div>
-    </div></div>
+    </a></div>
 <footer><p>© 2026 Maniké. All rights reserved.</p></footer>
-</body>
-</html>
+</body></html>
