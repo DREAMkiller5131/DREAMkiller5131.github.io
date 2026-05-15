@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Maniké — Image Path Checker</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,sans-serif;background:#0e0c0a;color:#f0ebe3;padding:32px 20px;max-width:800px;margin:0 auto;}
+h1{font-size:1.4rem;color:#c9a96e;margin-bottom:6px;}
+p{font-size:0.85rem;color:#7a6e62;margin-bottom:28px;line-height:1.7;}
+.section{background:#171410;border:1px solid #2c2820;border-radius:8px;padding:22px;margin-bottom:20px;}
+.section h2{font-size:1rem;color:#c9a96e;margin-bottom:16px;}
+.btn{padding:10px 22px;background:#c9a96e;color:#0e0c0a;border:none;border-radius:4px;font-size:0.82rem;cursor:pointer;font-weight:600;}
+.btn:hover{background:#a07840;}
+.btn-outline{background:transparent;border:1px solid #3a342c;color:#8a7d6e;margin-left:10px;}
+.btn-outline:hover{border-color:#c9a96e;color:#c9a96e;}
+.results{margin-top:16px;}
+.item{display:grid;grid-template-columns:60px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #1e1b17;}
+.item:last-child{border-bottom:none;}
+.thumb{width:60px;height:60px;object-fit:cover;border-radius:4px;background:#211e1a;border:1px solid #2c2820;}
+.thumb-ph{width:60px;height:60px;background:#211e1a;border-radius:4px;border:1px solid #2c2820;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#3a342c;}
+.info{min-width:0;}
+.fname{font-size:0.85rem;color:#e8dfd0;word-break:break-all;margin-bottom:2px;}
+.path{font-size:0.74rem;color:#5a4f40;}
+.status{font-size:0.78rem;font-weight:600;white-space:nowrap;}
+.ok{color:#27ae60;}
+.fail{color:#c0392b;}
+.warn{color:#c9a96e;}
+.empty{text-align:center;padding:30px;color:#5a4f40;font-size:0.85rem;}
+.step{font-size:0.82rem;color:#8a7d6e;line-height:1.9;margin-bottom:4px;}
+.step strong{color:#e8dfd0;}
+code{background:#211e1a;padding:2px 6px;border-radius:3px;font-size:0.82em;color:#c9a96e;}
+.summary{font-size:0.84rem;margin-top:12px;padding:10px 14px;border-radius:5px;}
+.summary.all-ok{background:#0a1a12;border:1px solid #1a4a2a;color:#27ae60;}
+.summary.has-fail{background:#1a0a0a;border:1px solid #5a1a1a;color:#e07070;}
+</style>
+</head>
+<body>
+<h1>Maniké — Image Path Checker</h1>
+<p>Open this file from your website folder (same place as index.html). It checks whether your product images are in the right place and will be visible on your live site.</p>
+
+<div class="section">
+  <h2>Step 1 — Load your product data</h2>
+  <p style="font-size:0.82rem;color:#7a6e62;margin-bottom:14px;">Click the button to read your products from the admin panel's localStorage. This only works if you open this file in the same browser you use for admin.html.</p>
+  <button class="btn" onclick="loadFromStorage()">Load products from admin</button>
+  <button class="btn btn-outline" onclick="loadFromFile()">Or load a backup JSON file</button>
+  <input type="file" id="json-file" accept=".json" style="display:none" onchange="loadJson(this)">
+  <div id="load-status" style="margin-top:10px;font-size:0.82rem;color:#7a6e62;"></div>
+</div>
+
+<div class="section" id="check-section" style="display:none">
+  <h2>Step 2 — Check image paths</h2>
+  <p style="font-size:0.82rem;color:#7a6e62;margin-bottom:14px;">
+    For images to show on your live site, each file must exist in the correct folder:
+    <br>• Collection/Unique pages: <code>images/filename.jpg</code> (next to index.html)
+    <br>• Product detail pages: <code>images/filename.jpg</code> (same — product pages use <code>../images/</code>)
+  </p>
+  <button class="btn" onclick="checkPaths()">Check all image paths</button>
+  <div class="results" id="results"></div>
+</div>
+
+<div class="section">
+  <h2>Folder structure guide</h2>
+  <div class="step"><strong>Your website folder should look like this:</strong></div>
+  <div style="font-family:monospace;font-size:0.8rem;color:#7a6e62;line-height:2;margin-top:8px;background:#0a0806;padding:14px;border-radius:5px;">
+    📁 your-website-folder/<br>
+    &nbsp;&nbsp;├── <strong style="color:#c9a96e">index.html</strong><br>
+    &nbsp;&nbsp;├── collection.html<br>
+    &nbsp;&nbsp;├── unique.html<br>
+    &nbsp;&nbsp;├── story.html<br>
+    &nbsp;&nbsp;├── contact.html<br>
+    &nbsp;&nbsp;├── admin.html<br>
+    &nbsp;&nbsp;├── 📁 <strong style="color:#c9a96e">images/</strong> &nbsp;&nbsp;&nbsp;&larr; all product photos go here<br>
+    &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp; ├── ring-01.jpg<br>
+    &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp; └── earrings-02.jpg<br>
+    &nbsp;&nbsp;├── 📁 slideshow/ &nbsp;&larr; homepage background photos<br>
+    &nbsp;&nbsp;└── 📁 products/ &nbsp;&nbsp;&larr; individual product pages<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── moonstone-ring.html<br>
+  </div>
+</div>
+
+<script>
+var products = [];
+
+function imgName(e){ return e&&e.name?e.name:(e||''); }
+
+function loadFromStorage(){
+  try{
+    var data = localStorage.getItem('manike_products');
+    if(!data){ document.getElementById('load-status').innerHTML='<span style="color:#c0392b">No admin data found in this browser. Make sure you open this file in the same browser you use for admin.html.</span>'; return; }
+    products = JSON.parse(data);
+    document.getElementById('load-status').innerHTML='<span style="color:#27ae60">✓ Loaded '+products.length+' products from admin panel.</span>';
+    document.getElementById('check-section').style.display='block';
+  }catch(e){
+    document.getElementById('load-status').innerHTML='<span style="color:#c0392b">Error reading data: '+e.message+'</span>';
+  }
+}
+
+function loadFromFile(){ document.getElementById('json-file').click(); }
+function loadJson(input){
+  var file=input.files[0]; if(!file) return;
+  var reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      products=JSON.parse(e.target.result);
+      document.getElementById('load-status').innerHTML='<span style="color:#27ae60">✓ Loaded '+products.length+' products from file.</span>';
+      document.getElementById('check-section').style.display='block';
+    }catch(err){ document.getElementById('load-status').innerHTML='<span style="color:#c0392b">Invalid JSON file.</span>'; }
+  };
+  reader.readAsText(file);
+}
+
+function checkPaths(){
+  var container = document.getElementById('results');
+  container.innerHTML = '<div style="color:#7a6e62;font-size:0.82rem;padding:10px 0;">Checking... (images that don\'t load will show as ✗)</div>';
+
+  // Collect all unique image filenames
+  var toCheck = [];
+  products.forEach(function(p){
+    if(p.images&&p.images.length){
+      p.images.forEach(function(entry,idx){
+        var fn = imgName(entry);
+        if(fn) toCheck.push({ product: p.name, filename: fn, idx: idx, isFirst: idx===0 });
+      });
+    }
+  });
+
+  if(!toCheck.length){
+    container.innerHTML='<div class="empty">No images found in your products. Upload images via admin.html first.</div>';
+    return;
+  }
+
+  container.innerHTML='';
+  var ok=0, fail=0, checked=0;
+
+  toCheck.forEach(function(item){
+    var row = document.createElement('div');
+    row.className='item';
+
+    var imgEl = document.createElement('img');
+    imgEl.className='thumb';
+    imgEl.alt=item.filename;
+
+    var info = document.createElement('div');
+    info.className='info';
+    info.innerHTML='<div class="fname">'+item.filename+'</div>'
+      +'<div class="path">'+item.product+(item.isFirst?' <span style="color:#c9a96e;font-size:0.68rem;">COVER</span>':'')+'</div>';
+
+    var status = document.createElement('div');
+    status.className='status warn';
+    status.textContent='checking...';
+
+    row.appendChild(imgEl);
+    row.appendChild(info);
+    row.appendChild(status);
+    container.appendChild(row);
+
+    // Try to load from images/ path
+    var testImg = new Image();
+    testImg.onload = function(){
+      imgEl.src = testImg.src;
+      status.className='status ok';
+      status.textContent='✓ Found';
+      ok++; checked++;
+      if(checked===toCheck.length) showSummary(ok,fail,toCheck.length);
+    };
+    testImg.onerror = function(){
+      // Try without folder prefix (maybe images are in same folder)
+      var testImg2 = new Image();
+      testImg2.onload = function(){
+        imgEl.src = testImg2.src;
+        status.className='status warn';
+        status.innerHTML='⚠ Found in root<br><span style="font-size:0.7rem;font-weight:400">Move to images/ folder</span>';
+        fail++; checked++;
+        if(checked===toCheck.length) showSummary(ok,fail,toCheck.length);
+      };
+      testImg2.onerror = function(){
+        var ph = row.querySelector('img');
+        ph.style.display='none';
+        var phDiv = document.createElement('div');
+        phDiv.className='thumb-ph';
+        phDiv.textContent='✗';
+        row.insertBefore(phDiv, ph);
+        status.className='status fail';
+        status.innerHTML='✗ Not found<br><span style="font-size:0.7rem;font-weight:400">Copy to images/ folder</span>';
+        fail++; checked++;
+        if(checked===toCheck.length) showSummary(ok,fail,toCheck.length);
+      };
+      testImg2.src = item.filename;
+    };
+    testImg.src = 'images/'+item.filename;
+  });
+}
+
+function showSummary(ok,fail,total){
+  var el = document.createElement('div');
+  el.className = 'summary '+(fail===0?'all-ok':'has-fail');
+  if(fail===0){
+    el.textContent='✓ All '+total+' images found correctly. Your product pages should display images properly.';
+  } else {
+    el.innerHTML='✗ '+fail+' image'+(fail>1?'s':'')+' not found in images/ folder.<br>'
+      +'<strong>Fix:</strong> Copy those files into your <code style="background:rgba(255,255,255,0.05);padding:1px 4px;border-radius:2px;">images/</code> folder, then commit and push to GitHub.';
+  }
+  document.getElementById('results').appendChild(el);
+}
+</script>
+</body>
+</html>
