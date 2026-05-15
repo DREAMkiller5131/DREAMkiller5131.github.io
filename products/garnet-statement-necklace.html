@@ -4,7 +4,6 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maniké — Garnet Statement Necklace</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -14,7 +13,7 @@ header{text-align:center;padding:clamp(24px,5vw,40px) 20px clamp(14px,3vw,24px);
 header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,6vw,2.4rem);font-weight:300;letter-spacing:0.15em;color:#c4683a;}
 header p{margin-top:6px;font-size:clamp(0.76rem,2.5vw,0.82rem);color:#8a6050;letter-spacing:0.08em;}
 nav{display:flex;justify-content:center;gap:clamp(12px,3.5vw,34px);padding:14px 16px;background:#140b08;border-bottom:1px solid #3d2018;flex-wrap:wrap;}
-nav a{text-decoration:none;color:#8a6050;font-size:clamp(0.66rem,2vw,0.76rem);letter-spacing:0.1em;text-transform:uppercase;padding:4px 0;transition:color 0.2s;}
+nav a{text-decoration:none;color:#8a6050;font-size:clamp(0.66rem,2vw,0.76rem);letter-spacing:0.1em;text-transform:uppercase;padding:4px 0;}
 nav a:hover,nav a.active{color:#c4683a;}
 .breadcrumb{max-width:1000px;margin:clamp(14px,3vw,24px) auto 0;padding:0 clamp(16px,4vw,32px);font-size:0.74rem;color:#5a3a2a;}
 .breadcrumb a{color:#8a6050;text-decoration:none;}.breadcrumb a:hover{color:#c4683a;}
@@ -69,11 +68,12 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-si
 <div class="product">
   <div class="gallery">
     <div class="gallery-main" id="gallery-main">
-      <div style="width:100%;height:100%;background:#1e1008;display:flex;align-items:center;justify-content:center;"><span style="color:#5a3a2a;font-size:0.82rem;letter-spacing:0.1em;">Photo coming soon</span></div>
-      
+      <div class="slide active" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;"><img src="../images/paper.jpg" alt="Garnet Statement Necklace photo 1" style="width:100%;height:100%;object-fit:cover;"></div><div class="slide" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;"><img src="../images/neck.jpg" alt="Garnet Statement Necklace photo 2" style="width:100%;height:100%;object-fit:cover;"></div><div class="slide" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;"><img src="../images/garnat.jpg" alt="Garnet Statement Necklace photo 3" style="width:100%;height:100%;object-fit:cover;"></div>
+      <button onclick="prevSlide()" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#c4683a;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">‹</button>
+       <button onclick="nextSlide()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#c4683a;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">›</button>
     </div>
-    
-    
+    <div style="display:flex;justify-content:center;gap:6px;margin-top:10px;"><div id="dot-0" onclick="showSlide(0)" style="width:6px;height:6px;border-radius:50%;background:#c4683a;cursor:pointer;transition:background 0.2s;"></div><div id="dot-1" onclick="showSlide(1)" style="width:6px;height:6px;border-radius:50%;background:#3d2018;cursor:pointer;transition:background 0.2s;"></div><div id="dot-2" onclick="showSlide(2)" style="width:6px;height:6px;border-radius:50%;background:#3d2018;cursor:pointer;transition:background 0.2s;"></div></div>
+    <div class="thumbs"><div onclick="showSlide(0)" id="thumb-0" class="thumb" style="border-color:#c4683a"><img src="../images/paper.jpg" alt="thumb 1"></div><div onclick="showSlide(1)" id="thumb-1" class="thumb" style="border-color:transparent"><img src="../images/neck.jpg" alt="thumb 2"></div><div onclick="showSlide(2)" id="thumb-2" class="thumb" style="border-color:transparent"><img src="../images/garnat.jpg" alt="thumb 3"></div></div>
   </div>
   <div class="detail">
     <div class="detail-cat">Necklace · Silver · Garnet</div>
@@ -99,7 +99,7 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-si
   </div><!-- end .page-content -->
 <script>
 var currentSlide = 0;
-var totalSlides = document.querySelectorAll('.slide').length;
+var totalSlides = 3;
 function showSlide(n) {
   if(totalSlides < 2) return;
   var slides = document.querySelectorAll('.slide');
@@ -121,10 +121,11 @@ document.getElementById('gallery-main').addEventListener('touchend', function(e)
   var dx = e.changedTouches[0].clientX - tx;
   if(Math.abs(dx) > 40) dx < 0 ? nextSlide() : prevSlide();
 });
-</script>
+</' + 'script>
 <style>
-.page-content{animation:pageFadeIn 0.45s ease both;transition:opacity 0.28s ease,transform 0.28s ease;}
+.page-content{animation:pageFadeIn 0.45s ease both;}
 @keyframes pageFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.page-content{transition:opacity 0.28s ease,transform 0.28s ease;}
 .page-content.leaving{opacity:0;transform:translateY(-6px);}
 </style>
 <script>
@@ -142,5 +143,5 @@ document.getElementById('gallery-main').addEventListener('touchend', function(e)
     setTimeout(function(){window.location.href=url;},300);
   });
 })();
-</script>
+</' + 'script>
 </body></html>

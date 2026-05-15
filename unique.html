@@ -4,7 +4,6 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maniké — Unique Pieces</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -14,13 +13,15 @@ header{text-align:center;padding:clamp(28px,6vw,50px) 20px clamp(18px,4vw,30px);
 header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,2.8rem);font-weight:300;letter-spacing:0.15em;color:#c4683a;}
 header p{margin-top:8px;font-size:clamp(0.78rem,2.5vw,0.85rem);color:#8a6050;letter-spacing:0.08em;}
 nav{display:flex;justify-content:center;gap:clamp(14px,4vw,36px);padding:14px 16px;background:#140b08;border-bottom:1px solid #3d2018;flex-wrap:wrap;}
-nav a{text-decoration:none;color:#8a6050;font-size:clamp(0.68rem,2.2vw,0.78rem);letter-spacing:0.1em;text-transform:uppercase;padding:4px 0;transition:color 0.2s;}
+nav a{text-decoration:none;color:#8a6050;font-size:clamp(0.68rem,2.2vw,0.78rem);letter-spacing:0.1em;text-transform:uppercase;padding:4px 0;}
 nav a:hover,nav a.active{color:#c4683a;}
 .page-title{text-align:center;padding:clamp(32px,7vw,60px) 20px clamp(20px,4vw,40px);}
 .page-title h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,5vw,2rem);font-weight:300;color:#c4683a;letter-spacing:0.08em;}
 .page-title p{font-size:clamp(0.8rem,2.5vw,0.85rem);color:#8a6050;margin-top:8px;}
 .page-title h2::after{content:'';display:block;width:40px;height:1px;background:#c4683a;margin:16px auto 0;opacity:0.5;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:clamp(12px,3vw,24px);max-width:1100px;margin:0 auto;padding:0 clamp(14px,4vw,40px) clamp(40px,8vw,80px);}
+.card-img{width:100%;aspect-ratio:1;overflow:hidden;}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
 footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-size:0.78rem;border-top:1px solid #3d2018;}
 @media(max-width:480px){
   nav{gap:10px 16px;padding:12px 14px;}
@@ -34,7 +35,7 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-si
 <nav><a href="index.html">Home</a><a href="collection.html">Collection</a><a href="unique.html" class="active">Unique Pieces</a><a href="story.html">Our Story</a><a href="contact.html">Contact</a></nav>
 <div class="page-title"><h2>Unique Pieces</h2><p>One of a Kind — Each piece exists only once.</p></div>
 <div class="grid"><a href="products/garnet-statement-necklace.html" style="text-decoration:none;color:inherit;display:block;background:#1e1008;border:1px solid #3d2018;border-radius:8px;overflow:hidden;transition:border-color 0.2s;" onmouseenter="this.style.borderColor='#c4683a'" onmouseleave="this.style.borderColor='#3d2018'">
-      <div style="position:relative;"><div style="width:100%;aspect-ratio:1;background:#2a1510;display:flex;align-items:center;justify-content:center;"><span style="color:#5a3a2a;font-size:0.75rem;letter-spacing:0.1em;">Photo coming soon</span></div></div>
+      <div style="position:relative;"><div style="width:100%;aspect-ratio:1;background:#2a1510;overflow:hidden;"><img src="images/paper.jpg" alt="Garnet Statement Necklace" style="width:100%;height:100%;object-fit:cover;"></div><div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.6);color:#c4683a;font-size:0.65rem;padding:3px 7px;border-radius:10px;">3 photos</div></div>
       <div style="padding:18px;">
         <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:4px;color:#f2e8e0;">Garnet Statement Necklace</div>
         <div style="font-size:0.75rem;color:#8a6050;margin-bottom:10px;">Necklace · Silver · Garnet</div>
@@ -49,8 +50,9 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-si
 <footer><p>© 2026 Maniké. All rights reserved.</p></footer>
   </div><!-- end .page-content -->
 <style>
-.page-content{animation:pageFadeIn 0.45s ease both;transition:opacity 0.28s ease,transform 0.28s ease;}
+.page-content{animation:pageFadeIn 0.45s ease both;}
 @keyframes pageFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.page-content{transition:opacity 0.28s ease,transform 0.28s ease;}
 .page-content.leaving{opacity:0;transform:translateY(-6px);}
 </style>
 <script>
@@ -68,5 +70,5 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-si
     setTimeout(function(){window.location.href=url;},300);
   });
 })();
-</script>
+</' + 'script>
 </body></html>
