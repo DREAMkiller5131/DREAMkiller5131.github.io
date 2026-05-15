@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maniké — Garnet Statement Necklace</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -13,7 +14,7 @@ header{text-align:center;padding:clamp(24px,5vw,40px) 20px clamp(14px,3vw,24px);
 header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,6vw,2.4rem);font-weight:300;letter-spacing:0.15em;color:#c4683a;}
 header p{margin-top:6px;font-size:clamp(0.76rem,2.5vw,0.82rem);color:#8a6050;letter-spacing:0.08em;}
 nav{display:flex;justify-content:center;gap:clamp(12px,3.5vw,34px);padding:14px 16px;background:#140b08;border-bottom:1px solid #3d2018;flex-wrap:wrap;}
-nav a{text-decoration:none;color:#8a6050;font-size:clamp(0.66rem,2vw,0.76rem);letter-spacing:0.1em;text-transform:uppercase;padding:4px 0;}
+nav a{text-decoration:none;color:#8a6050;font-size:clamp(0.66rem,2vw,0.76rem);letter-spacing:0.1em;text-transform:uppercase;padding:4px 0;transition:color 0.2s;}
 nav a:hover,nav a.active{color:#c4683a;}
 .breadcrumb{max-width:1000px;margin:clamp(14px,3vw,24px) auto 0;padding:0 clamp(16px,4vw,32px);font-size:0.74rem;color:#5a3a2a;}
 .breadcrumb a{color:#8a6050;text-decoration:none;}.breadcrumb a:hover{color:#c4683a;}
@@ -55,6 +56,7 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-si
 </style>
 </head>
 <body>
+  <div class="page-content">
 <header><h1>Maniké</h1><p>Each piece, made once.</p></header>
 <nav>
   <a href="../index.html">Home</a>
@@ -94,9 +96,10 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-si
   </div>
 </div>
 <footer><p>© 2026 Maniké. All rights reserved.</p></footer>
+  </div><!-- end .page-content -->
 <script>
 var currentSlide = 0;
-var totalSlides = 0;
+var totalSlides = document.querySelectorAll('.slide').length;
 function showSlide(n) {
   if(totalSlides < 2) return;
   var slides = document.querySelectorAll('.slide');
@@ -118,5 +121,26 @@ document.getElementById('gallery-main').addEventListener('touchend', function(e)
   var dx = e.changedTouches[0].clientX - tx;
   if(Math.abs(dx) > 40) dx < 0 ? nextSlide() : prevSlide();
 });
-</' + 'script>
+</script>
+<style>
+.page-content{animation:pageFadeIn 0.45s ease both;transition:opacity 0.28s ease,transform 0.28s ease;}
+@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.page-content.leaving{opacity:0;transform:translateY(-6px);}
+</style>
+<script>
+(function(){
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a');
+    if(!a||!a.href)return;
+    var url=a.href;
+    if(a.target==='_blank'||url.startsWith('mailto:')||url.startsWith('tel:'))return;
+    try{var u=new URL(url);if(u.origin!==location.origin&&u.hostname!=='')return;}catch(err){return;}
+    var pc=document.querySelector('.page-content');
+    if(!pc)return;
+    e.preventDefault();
+    pc.classList.add('leaving');
+    setTimeout(function(){window.location.href=url;},300);
+  });
+})();
+</script>
 </body></html>
