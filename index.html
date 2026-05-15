@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maniké — Unique Handcrafted Jewelry</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -60,6 +60,11 @@
       .btn{width:100%;max-width:280px;}
     }
   </style>
+<style>
+.page-content{animation:pageFadeIn 0.45s ease both;transition:opacity 0.28s ease,transform 0.28s ease;}
+.page-content.leaving{opacity:0;transform:translateY(-6px);}
+@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+</style>
 </head>
 <body>
 
@@ -110,8 +115,7 @@
 (function(){
   var allSrcs = ["slideshow/mine.jpg","slideshow/nambuwa.jpg","slideshow/river.jpg"];
   if (!allSrcs.length) return;
-  var srcs = allSrcs.slice();
-  for (var i = srcs.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = srcs[i]; srcs[i] = srcs[j]; srcs[j] = t; }
+  var srcs = allSrcs.slice().sort(function(){ return Math.random() - 0.5; });
   var container = document.getElementById('bg-slideshow');
   var overlay = container.querySelector('.bg-overlay');
   var current = 0;
@@ -128,9 +132,7 @@
       loaded++;
       if (loaded === 1) {
         div.classList.add('active');
-      }
-      if (slides.length === 2) {
-        setInterval(next, 5000);
+        if (srcs.length > 1) setInterval(next, 5000);
       }
     };
     img.src = src;
@@ -144,12 +146,7 @@
   if (allSrcs.length >= 2) document.getElementById('sold-label').textContent = 'Previously sold pieces';
 })();
 </script>
-<style>
-.page-content{animation:pageFadeIn 0.45s ease both;}
-@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.page-content{transition:opacity 0.28s ease,transform 0.28s ease;}
-.page-content.leaving{opacity:0;transform:translateY(-6px);}
-</style>
+
 <script>
 (function(){
   document.addEventListener('click',function(e){

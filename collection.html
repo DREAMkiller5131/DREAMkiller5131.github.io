@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maniké — Collection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -14,6 +15,7 @@ header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,2.8rem
 header p{margin-top:8px;font-size:clamp(0.78rem,2.5vw,0.85rem);color:#7a6e62;letter-spacing:0.08em;}
 nav{display:flex;justify-content:center;gap:clamp(14px,4vw,36px);padding:14px 16px;background:#111;border-bottom:1px solid #2c2820;flex-wrap:wrap;}
 nav a{text-decoration:none;color:#7a6e62;font-size:clamp(0.68rem,2.2vw,0.78rem);letter-spacing:0.1em;text-transform:uppercase;padding:4px 0;}
+nav a{transition:color 0.2s;}
 nav a:hover,nav a.active{color:#c9a96e;}
 .page-title{text-align:center;padding:clamp(32px,7vw,60px) 20px clamp(20px,4vw,40px);}
 .page-title h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,5vw,2rem);font-weight:300;color:#c9a96e;letter-spacing:0.08em;}
@@ -27,6 +29,11 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a4f40;font-si
   nav{gap:10px 16px;padding:12px 14px;}
   .page-title h2{letter-spacing:0.04em;}
 }
+</style>
+<style>
+.page-content{animation:pageFadeIn 0.45s ease both;transition:opacity 0.28s ease,transform 0.28s ease;}
+.page-content.leaving{opacity:0;transform:translateY(-6px);}
+@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 <body>
@@ -61,12 +68,7 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a4f40;font-si
     </a></div>
 <footer><p>© 2026 Maniké. All rights reserved.</p></footer>
   </div><!-- end .page-content -->
-<style>
-.page-content{animation:pageFadeIn 0.45s ease both;}
-@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.page-content{transition:opacity 0.28s ease,transform 0.28s ease;}
-.page-content.leaving{opacity:0;transform:translateY(-6px);}
-</style>
+
 <script>
 (function(){
   document.addEventListener('click',function(e){
@@ -82,5 +84,5 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a4f40;font-si
     setTimeout(function(){window.location.href=url;},300);
   });
 })();
-</' + 'script>
+</script>
 </body></html>
