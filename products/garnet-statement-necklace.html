@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Maniké — Garnet Statement Necklace</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;}
@@ -15,16 +16,30 @@ header p{margin-top:6px;font-size:clamp(0.76rem,2.5vw,0.82rem);color:#8a6050;let
 nav{display:flex;justify-content:center;gap:clamp(12px,3.5vw,34px);padding:14px 16px;background:#140b08;border-bottom:1px solid #3d2018;flex-wrap:wrap;}
 nav a{text-decoration:none;color:#8a6050;font-size:clamp(0.66rem,2vw,0.76rem);letter-spacing:0.1em;text-transform:uppercase;padding:4px 0;}
 nav a:hover,nav a.active{color:#c4683a;}
-.breadcrumb{max-width:1000px;margin:clamp(14px,3vw,24px) auto 0;padding:0 clamp(16px,4vw,32px);font-size:0.74rem;color:#5a3a2a;}
-.breadcrumb a{color:#8a6050;text-decoration:none;}.breadcrumb a:hover{color:#c4683a;}
+.bc{max-width:1000px;margin:clamp(14px,3vw,24px) auto 0;padding:0 clamp(16px,4vw,32px);font-size:0.74rem;color:#5a3a2a;}
+.bc a{color:#8a6050;text-decoration:none;}.bc a:hover{color:#c4683a;}
 .product{max-width:1000px;margin:clamp(20px,4vw,32px) auto clamp(40px,8vw,80px);padding:0 clamp(16px,4vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,60px);align-items:start;}
+/* ── Gallery ── */
 .gallery{position:sticky;top:16px;}
-.gallery-main{aspect-ratio:1;background:#1e1008;border-radius:8px;overflow:hidden;position:relative;cursor:zoom-in;}
-.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;pointer-events:none;}
+.gm{width:100%;aspect-ratio:1;background:#1e1008;border-radius:8px;overflow:hidden;position:relative;user-select:none;}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 0.4s ease;pointer-events:none;}
 .slide.active{opacity:1;pointer-events:auto;}
-.slide img{width:100%;height:100%;object-fit:cover;display:block;}
-.gallery-main:hover .zoom-hint{opacity:1;}
-.zoom-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.55);color:#c4683a;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:4px 10px;border-radius:20px;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;}
+.slide-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#5a3a2a;font-size:0.82rem;letter-spacing:0.1em;}
+.arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.55);border:none;color:#c4683a;width:38px;height:54px;font-size:1.6rem;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;transition:background 0.2s;border-radius:4px;line-height:1;}
+.arr:hover{background:rgba(0,0,0,0.8);}
+.arr-prev{left:8px;}
+.arr-next{right:8px;}
+.zoom-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.55);color:#c4683a;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;padding:4px 10px;border-radius:20px;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;z-index:4;}
+.gm:hover .zoom-hint{opacity:1;}
+.dots{display:flex;justify-content:center;gap:7px;margin-top:10px;}
+.dot{width:6px;height:6px;border-radius:50%;background:#3d2018;cursor:pointer;transition:background 0.25s,transform 0.25s;}
+.dot.active-dot{background:#c4683a;transform:scale(1.3);}
+.thumbs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.thumb{width:clamp(44px,10vw,58px);height:clamp(44px,10vw,58px);border-radius:4px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s;flex-shrink:0;}
+.thumb.active-thumb{border-color:#c4683a;}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+/* ── Detail ── */
 .detail{padding-top:4px;}
 .detail-cat{font-size:0.72rem;color:#5a3a2a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;}
 .detail h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,5vw,2.2rem);font-weight:300;color:#f2e8e0;line-height:1.2;margin-bottom:14px;}
@@ -44,34 +59,25 @@ nav a:hover,nav a.active{color:#c4683a;}
 .enquire-btn.sold{background:#1e1008;color:#5a3a2a;cursor:not-allowed;border:1px solid #3d2018;}
 .back-link{display:block;text-align:center;font-size:0.76rem;color:#5a3a2a;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:4px 0;}
 .back-link:hover{color:#c4683a;}
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:1000;align-items:center;justify-content:center;}
-.lightbox.open{display:flex;}
-.lightbox-img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:4px;transition:transform 0.25s ease, opacity 0.15s ease;cursor:zoom-in;user-select:none;opacity:1;}
-.lightbox-img.zoomed{cursor:zoom-out;transform:scale(1.9);}
-.lb-close{position:fixed;top:18px;right:22px;color:rgba(255,255,255,0.7);font-size:2rem;cursor:pointer;background:none;border:none;line-height:1;z-index:1001;transition:color 0.2s;}
-.lb-close:hover{color:#fff;}
-.lb-arrow{position:fixed;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.6);font-size:2.2rem;cursor:pointer;background:rgba(0,0,0,0.3);border:none;width:48px;height:64px;display:flex;align-items:center;justify-content:center;transition:color 0.2s,background 0.2s;z-index:1001;border-radius:4px;}
-.lb-arrow:hover{color:#fff;background:rgba(0,0,0,0.6);}
-.lb-prev{left:12px;}
-.lb-next{right:12px;}
-.lb-counter{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:0.78rem;letter-spacing:0.15em;}
-.thumbs{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
-.thumb{width:clamp(48px,12vw,60px);height:clamp(48px,12vw,60px);border-radius:4px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s;flex-shrink:0;}
-.thumb img{width:100%;height:100%;object-fit:cover;}
 footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-size:0.78rem;border-top:1px solid #3d2018;}
-@media(max-width:660px){
-  .product{grid-template-columns:1fr;gap:clamp(20px,5vw,32px);}
-  .gallery{position:static;}
-  .detail{padding-top:0;}
-}
-@media(max-width:400px){
-  nav{gap:8px 12px;padding:10px 12px;}
-  .detail h1{font-size:1.5rem;}
-}
+/* ── Lightbox ── */
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:9000;align-items:center;justify-content:center;}
+.lb.open{display:flex;}
+.lb-img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:4px;transition:transform 0.25s ease,opacity 0.15s ease;cursor:zoom-in;user-select:none;-webkit-user-drag:none;}
+.lb-img.zoomed{cursor:zoom-out;transform:scale(2);}
+.lb-close{position:fixed;top:16px;right:20px;background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:1.8rem;width:42px;height:42px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:9001;transition:background 0.2s;line-height:1;}
+.lb-close:hover{background:rgba(255,255,255,0.25);}
+.lb-arr{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.08);border:none;color:rgba(255,255,255,0.8);font-size:2.4rem;width:52px;height:72px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:9001;border-radius:4px;transition:background 0.2s;line-height:1;}
+.lb-arr:hover{background:rgba(255,255,255,0.2);color:#fff;}
+.lb-prev{left:10px;}
+.lb-next{right:10px;}
+.lb-count{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.45);font-family:'Jost',sans-serif;font-size:0.78rem;letter-spacing:0.15em;}
+@media(max-width:660px){.product{grid-template-columns:1fr;gap:clamp(20px,5vw,32px);}.gallery{position:static;}}
+@media(max-width:400px){nav{gap:8px 12px;padding:10px 12px;}}
 </style>
 </head>
 <body>
-  <div class="page-content">
+<div class="page-content">
 <header><h1>Maniké</h1><p>Each piece, made once.</p></header>
 <nav>
   <a href="../index.html">Home</a>
@@ -80,17 +86,16 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-si
   <a href="../story.html">Our Story</a>
   <a href="../contact.html">Contact</a>
 </nav>
-<div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../unique.html">Unique Pieces</a> › Garnet Statement Necklace</div>
+<div class="bc"><a href="../index.html">Home</a> › <a href="../unique.html">Unique Pieces</a> › Garnet Statement Necklace</div>
 <div class="product">
   <div class="gallery">
-    <div class="gallery-main" id="gallery-main" onclick="handleGalleryClick(event)">
-      <div class="slide active" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity 0.4s ease;pointer-events:auto;"><img src="../images/paper.jpg" alt="Garnet Statement Necklace photo 1" style="width:100%;height:100%;object-fit:cover;" onclick="openZoom(0)"></div><div class="slide" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;pointer-events:none;"><img src="../images/neck.jpg" alt="Garnet Statement Necklace photo 2" style="width:100%;height:100%;object-fit:cover;" onclick="openZoom(1)"></div><div class="slide" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;pointer-events:none;"><img src="../images/garnat.jpg" alt="Garnet Statement Necklace photo 3" style="width:100%;height:100%;object-fit:cover;" onclick="openZoom(2)"></div>
-      <button onclick="prevSlide()" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#c4683a;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">‹</button>
-       <button onclick="nextSlide()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;color:#c4683a;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">›</button>
-      <div class="zoom-hint">Click to zoom</div>
+    <div class="gm" id="gm">
+      <div class="slide active" data-idx="0"><img src="../images/paper.jpg" alt="Garnet Statement Necklace photo 1"></div><div class="slide" data-idx="1"><img src="../images/neck.jpg" alt="Garnet Statement Necklace photo 2"></div><div class="slide" data-idx="2"><img src="../images/garnat.jpg" alt="Garnet Statement Necklace photo 3"></div>
+      <button class="arr arr-prev" id="arr-prev">&#8249;</button><button class="arr arr-next" id="arr-next">&#8250;</button>
+      <div class="zoom-hint">Click image to zoom</div>
     </div>
-    <div style="display:flex;justify-content:center;gap:6px;margin-top:10px;"><div id="dot-0" onclick="showSlide(0)" style="width:6px;height:6px;border-radius:50%;background:#c4683a;cursor:pointer;transition:background 0.2s;"></div><div id="dot-1" onclick="showSlide(1)" style="width:6px;height:6px;border-radius:50%;background:#3d2018;cursor:pointer;transition:background 0.2s;"></div><div id="dot-2" onclick="showSlide(2)" style="width:6px;height:6px;border-radius:50%;background:#3d2018;cursor:pointer;transition:background 0.2s;"></div></div>
-    <div class="thumbs"><div onclick="showSlide(0)" id="thumb-0" class="thumb" style="border-color:#c4683a"><img src="../images/paper.jpg" alt="thumb 1"></div><div onclick="showSlide(1)" id="thumb-1" class="thumb" style="border-color:transparent"><img src="../images/neck.jpg" alt="thumb 2"></div><div onclick="showSlide(2)" id="thumb-2" class="thumb" style="border-color:transparent"><img src="../images/garnat.jpg" alt="thumb 3"></div></div>
+    <div class="dots"><div class="dot active-dot" data-dot="0"></div><div class="dot" data-dot="1"></div><div class="dot" data-dot="2"></div></div>
+    <div class="thumbs"><div class="thumb active-thumb" data-thumb="0"><img src="../images/paper.jpg" alt="thumb 1"></div><div class="thumb" data-thumb="1"><img src="../images/neck.jpg" alt="thumb 2"></div><div class="thumb" data-thumb="2"><img src="../images/garnat.jpg" alt="thumb 3"></div></div>
   </div>
   <div class="detail">
     <div class="detail-cat">Necklace · Silver · Garnet</div>
@@ -102,144 +107,23 @@ footer{text-align:center;padding:clamp(24px,5vw,40px) 20px;color:#5a3a2a;font-si
       <span class="badge-unique">One of a Kind</span>
     </div>
     <p class="desc">One of a kind hand-forged silver necklace with a raw garnet centrepiece. This exact piece will never be made again.</p>
-    <table class="meta-table">
-      <tr><td>Metal</td><td>Silver</td></tr>
-      <tr><td>Gemstone</td><td>Garnet</td></tr>
-      <tr><td>Category</td><td>Necklace</td></tr>
-      <tr><td>Collection</td><td>Unique — One of a Kind</td></tr>
-    </table>
+    <table class="meta-table"><tbody><tr><td>Metal</td><td>Silver</td></tr><tr><td>Gemstone</td><td>Garnet</td></tr><tr><td>Category</td><td>Necklace</td></tr><tr><td>Collection</td><td>Unique — One of a Kind</td></tr></tbody></table>
     <a href="../contact.html?piece=Garnet%20Statement%20Necklace" class="enquire-btn">Enquire about this piece</a>
     <a href="../unique.html" class="back-link">← Back to Unique Pieces</a>
   </div>
 </div>
 <footer><p>© 2026 Maniké. All rights reserved.</p></footer>
-  </div><!-- end .page-content -->
+</div>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" onclick="lbBgClick(event)">
-    <button class="lb-close" onclick="closeZoom()">&times;</button>
-    <button class="lb-arrow lb-prev" onclick="lbNav(-1,event)">&#8249;</button>
-    <img class="lightbox-img" id="lb-img" src="" alt="" onclick="lbToggleZoom(event)">
-    <button class="lb-arrow lb-next" onclick="lbNav(1,event)">&#8250;</button>
-    <div class="lb-counter" id="lb-counter"></div>
-  </div>
+<!-- Lightbox -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lb-close">&times;</button>
+  <button class="lb-arr lb-prev" id="lb-prev">&#8249;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-arr lb-next" id="lb-next">&#8250;</button>
+  <div class="lb-count" id="lb-count"></div>
+</div>
 
-<script>
-// ── Gallery ──────────────────────────────────────────────────
-var currentSlide = 0;
-var totalSlides  = 3;
-var imgSrcs      = ["../images/paper.jpg","../images/neck.jpg","../images/garnat.jpg"];
-
-function showSlide(n) {
-  if (totalSlides < 1) return;
-  var slides = document.querySelectorAll('.slide');
-  var dots   = document.querySelectorAll('[id^="dot-"]');
-  var thumbs = document.querySelectorAll('[id^="thumb-"]');
-
-  // Fade out current
-  slides[currentSlide].style.opacity = '0';
-  slides[currentSlide].style.pointerEvents = 'none';
-  if (dots[currentSlide])   dots[currentSlide].style.background   = '#3d2018';
-  if (thumbs[currentSlide]) thumbs[currentSlide].style.borderColor = 'transparent';
-
-  currentSlide = (n + totalSlides) % totalSlides;
-
-  // Fade in next
-  slides[currentSlide].style.opacity = '1';
-  slides[currentSlide].style.pointerEvents = 'auto';
-  if (dots[currentSlide])   dots[currentSlide].style.background   = '#c4683a';
-  if (thumbs[currentSlide]) thumbs[currentSlide].style.borderColor = '#c4683a';
-}
-function nextSlide(){ showSlide(currentSlide + 1); }
-function prevSlide(){ showSlide(currentSlide - 1); }
-
-// Click on image or gallery = open lightbox, click on arrows = navigate
-function handleGalleryClick(e) {
-  if (e.target.closest('.lb-arrow') || e.target.tagName === 'BUTTON') return;
-  if (imgSrcs.length) openZoom(currentSlide);
-}
-
-// ── Touch swipe ───────────────────────────────────────────────
-var _tx = 0;
-var gm = document.getElementById('gallery-main');
-gm.addEventListener('touchstart', function(e){ _tx = e.touches[0].clientX; }, {passive:true});
-gm.addEventListener('touchend',   function(e){
-  var dx = e.changedTouches[0].clientX - _tx;
-  if (Math.abs(dx) > 40) { dx < 0 ? nextSlide() : prevSlide(); }
-});
-
-// ── Keyboard navigation ───────────────────────────────────────
-document.addEventListener('keydown', function(e) {
-  var lb = document.getElementById('lightbox');
-  if (lb && lb.classList.contains('open')) {
-    if (e.key === 'ArrowRight') lbNav(1);
-    if (e.key === 'ArrowLeft')  lbNav(-1);
-    if (e.key === 'Escape')     closeZoom();
-  } else {
-    if (e.key === 'ArrowRight') nextSlide();
-    if (e.key === 'ArrowLeft')  prevSlide();
-  }
-});
-
-// ── Lightbox ──────────────────────────────────────────────────
-var lbIndex = 0;
-function openZoom(idx) {
-  if (!imgSrcs.length) return;
-  lbIndex = idx !== undefined ? idx : currentSlide;
-  var lb = document.getElementById('lightbox');
-  var img = document.getElementById('lb-img');
-  img.src = imgSrcs[lbIndex];
-  img.classList.remove('zoomed');
-  lb.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  updateLbCounter();
-}
-function closeZoom() {
-  var lb = document.getElementById('lightbox');
-  lb.classList.remove('open');
-  document.body.style.overflow = '';
-  document.getElementById('lb-img').classList.remove('zoomed');
-}
-function lbNav(dir, e) {
-  if (e) e.stopPropagation();
-  if (imgSrcs.length < 2) return;
-  lbIndex = (lbIndex + dir + imgSrcs.length) % imgSrcs.length;
-  var img = document.getElementById('lb-img');
-  img.style.opacity = '0';
-  setTimeout(function() {
-    img.src = imgSrcs[lbIndex];
-    img.classList.remove('zoomed');
-    img.style.opacity = '1';
-    updateLbCounter();
-  }, 150);
-}
-function lbToggleZoom(e) {
-  e.stopPropagation();
-  var img = document.getElementById('lb-img');
-  img.classList.toggle('zoomed');
-  if (img.classList.contains('zoomed')) {
-    // Zoom toward click position
-    var rect = img.getBoundingClientRect();
-    var ox = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
-    var oy = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
-    img.style.transformOrigin = ox + '% ' + oy + '%';
-  }
-}
-function lbBgClick(e) {
-  if (e.target === document.getElementById('lightbox')) closeZoom();
-}
-function updateLbCounter() {
-  var c = document.getElementById('lb-counter');
-  if (c) c.textContent = imgSrcs.length > 1 ? (lbIndex + 1) + ' / ' + imgSrcs.length : '';
-}
-// Lightbox touch swipe
-var _lbTx = 0;
-document.getElementById('lightbox').addEventListener('touchstart', function(e){ _lbTx = e.touches[0].clientX; }, {passive:true});
-document.getElementById('lightbox').addEventListener('touchend', function(e){
-  var dx = e.changedTouches[0].clientX - _lbTx;
-  if (Math.abs(dx) > 40) lbNav(dx < 0 ? 1 : -1);
-});
-</' + 'script>
 <style>
 .page-content{animation:pageFadeIn 0.45s ease both;}
 @keyframes pageFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
@@ -248,18 +132,152 @@ document.getElementById('lightbox').addEventListener('touchend', function(e){
 </style>
 <script>
 (function(){
-  document.addEventListener('click',function(e){
-    var a=e.target.closest('a');
-    if(!a||!a.href)return;
-    var url=a.href;
-    if(a.target==='_blank'||url.startsWith('mailto:')||url.startsWith('tel:'))return;
-    try{var u=new URL(url);if(u.origin!==location.origin&&u.hostname!=='')return;}catch(err){return;}
-    var pc=document.querySelector('.page-content');
-    if(!pc)return;
+  // ── Gallery ─────────────────────────────────────────────
+  var slides  = Array.from(document.querySelectorAll('.slide'));
+  var dots    = Array.from(document.querySelectorAll('.dot'));
+  var thumbs  = Array.from(document.querySelectorAll('.thumb'));
+  var imgSrcs = slides.map(function(s){ var i=s.querySelector('img'); return i?i.src:''; }).filter(Boolean);
+  var cur = 0;
+  var total = imgSrcs.length;
+
+  function goTo(n) {
+    if (total < 2) return;
+    slides[cur].classList.remove('active');
+    if (dots[cur])   { dots[cur].classList.remove('active-dot'); }
+    if (thumbs[cur]) { thumbs[cur].classList.remove('active-thumb'); }
+    cur = ((n % total) + total) % total;
+    slides[cur].classList.add('active');
+    if (dots[cur])   { dots[cur].classList.add('active-dot'); }
+    if (thumbs[cur]) { thumbs[cur].classList.add('active-thumb'); }
+  }
+
+  // Arrow buttons
+  var btnPrev = document.getElementById('arr-prev');
+  var btnNext = document.getElementById('arr-next');
+  if (btnPrev) btnPrev.addEventListener('click', function(e){ e.stopPropagation(); goTo(cur-1); });
+  if (btnNext) btnNext.addEventListener('click', function(e){ e.stopPropagation(); goTo(cur+1); });
+
+  // Dots click
+  dots.forEach(function(d,i){ d.addEventListener('click', function(){ goTo(i); }); });
+
+  // Thumbs click
+  thumbs.forEach(function(t,i){ t.addEventListener('click', function(){ goTo(i); }); });
+
+  // Slide images click → open lightbox
+  slides.forEach(function(s,i){
+    var img = s.querySelector('img');
+    if (img) img.addEventListener('click', function(){ openLb(i); });
+  });
+
+  // Touch swipe on gallery
+  var gm = document.getElementById('gm');
+  var tx = 0;
+  if (gm) {
+    gm.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, {passive:true});
+    gm.addEventListener('touchend',   function(e){
+      var dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 40) goTo(dx < 0 ? cur+1 : cur-1);
+    });
+  }
+
+  // ── Lightbox ───────────────────────────────────────────
+  var lb     = document.getElementById('lb');
+  var lbImg  = document.getElementById('lb-img');
+  var lbCnt  = document.getElementById('lb-count');
+  var lbIdx  = 0;
+
+  function openLb(idx) {
+    if (!imgSrcs.length) return;
+    lbIdx = idx !== undefined ? idx : cur;
+    lbImg.src = imgSrcs[lbIdx];
+    lbImg.style.opacity = '1';
+    lbImg.classList.remove('zoomed');
+    lbImg.style.transformOrigin = '50% 50%';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    updCount();
+  }
+
+  function closeLb() {
+    lb.classList.remove('open');
+    lbImg.classList.remove('zoomed');
+    document.body.style.overflow = '';
+  }
+
+  function lbGo(dir) {
+    if (imgSrcs.length < 2) return;
+    lbIdx = ((lbIdx + dir) % total + total) % total;
+    lbImg.style.opacity = '0';
+    setTimeout(function(){
+      lbImg.src = imgSrcs[lbIdx];
+      lbImg.classList.remove('zoomed');
+      lbImg.style.transformOrigin = '50% 50%';
+      lbImg.style.opacity = '1';
+      updCount();
+    }, 130);
+  }
+
+  function updCount() {
+    if (lbCnt) lbCnt.textContent = total > 1 ? (lbIdx+1) + ' / ' + total : '';
+  }
+
+  // Lightbox clicks
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  document.getElementById('lb-prev').addEventListener('click',  function(e){ e.stopPropagation(); lbGo(-1); });
+  document.getElementById('lb-next').addEventListener('click',  function(e){ e.stopPropagation(); lbGo(1);  });
+
+  // Click on lightbox image = toggle zoom
+  lbImg.addEventListener('click', function(e){
+    e.stopPropagation();
+    if (lbImg.classList.contains('zoomed')) {
+      lbImg.classList.remove('zoomed');
+      lbImg.style.transformOrigin = '50% 50%';
+    } else {
+      var r  = lbImg.getBoundingClientRect();
+      var ox = (((e.clientX-r.left)/r.width)*100).toFixed(1);
+      var oy = (((e.clientY-r.top)/r.height)*100).toFixed(1);
+      lbImg.style.transformOrigin = ox+'% '+oy+'%';
+      lbImg.classList.add('zoomed');
+    }
+  });
+
+  // Click outside image = close
+  lb.addEventListener('click', function(e){ if(e.target===lb) closeLb(); });
+
+  // Touch swipe in lightbox
+  var lbTx = 0;
+  lb.addEventListener('touchstart', function(e){ lbTx = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend',   function(e){
+    var dx = e.changedTouches[0].clientX - lbTx;
+    if (Math.abs(dx) > 40) lbGo(dx < 0 ? 1 : -1);
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', function(e){
+    if (lb.classList.contains('open')) {
+      if (e.key==='ArrowRight') lbGo(1);
+      if (e.key==='ArrowLeft')  lbGo(-1);
+      if (e.key==='Escape')     closeLb();
+    } else {
+      if (e.key==='ArrowRight') goTo(cur+1);
+      if (e.key==='ArrowLeft')  goTo(cur-1);
+    }
+  });
+
+  // Page transition
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (!a||!a.href) return;
+    var url = a.href;
+    if (a.target==='_blank'||url.startsWith('mailto:')||url.startsWith('tel:')) return;
+    try{ var u=new URL(url); if(u.origin!==location.origin&&u.hostname!=='') return; }catch(err){ return; }
+    var pc = document.querySelector('.page-content');
+    if (!pc) return;
     e.preventDefault();
     pc.classList.add('leaving');
-    setTimeout(function(){window.location.href=url;},300);
+    setTimeout(function(){ window.location.href=url; }, 300);
   });
 })();
 </' + 'script>
-</body></html>
+</body>
+</html>
