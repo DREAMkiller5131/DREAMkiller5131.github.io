@@ -5,53 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maniké — Unique Handcrafted Jewelry</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
+    html{-webkit-text-size-adjust:100%;}
     body{font-family:'Jost',sans-serif;background:#0e0c0a;color:#f0ebe3;}
 
-    /* ── Background slideshow ── */
     .bg-slideshow{position:fixed;inset:0;z-index:0;pointer-events:none;}
     .bg-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2.5s ease-in-out;will-change:opacity;}
     .bg-slide.active{opacity:1;}
     .bg-overlay{position:absolute;inset:0;background:rgba(14,12,10,0.82);}
+    header,nav,.hero-wrap,.divider,.features,.cta,footer{position:relative;z-index:1;}
 
-    /* ── All page content sits above bg ── */
-    header,nav,.hero-wrap,.divider,.features,.cta,.sold-label,footer{position:relative;z-index:1;}
+    header{text-align:center;padding:clamp(32px,7vw,60px) 20px clamp(20px,4vw,36px);border-bottom:1px solid rgba(44,40,32,0.6);background:rgba(14,12,10,0.5);}
+    header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,8vw,3.2rem);font-weight:300;letter-spacing:0.15em;color:#c9a96e;}
+    header p{margin-top:10px;font-size:clamp(0.78rem,2.5vw,0.85rem);color:#7a6e62;letter-spacing:0.08em;}
 
-    header{text-align:center;padding:60px 20px 36px;border-bottom:1px solid rgba(44,40,32,0.6);background:rgba(14,12,10,0.5);}
-    header h1{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:300;letter-spacing:0.2em;color:#c9a96e;}
-    header p{margin-top:10px;font-size:0.85rem;color:#7a6e62;letter-spacing:0.1em;}
-    nav{display:flex;justify-content:center;gap:36px;padding:18px 20px;background:rgba(10,10,8,0.7);border-bottom:1px solid rgba(44,40,32,0.5);flex-wrap:wrap;backdrop-filter:blur(4px);}
-    nav a{text-decoration:none;color:#8a7d6e;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s;}
+    nav{display:flex;justify-content:center;gap:clamp(14px,4vw,36px);padding:clamp(12px,3vw,18px) 16px;background:rgba(10,10,8,0.7);border-bottom:1px solid rgba(44,40,32,0.5);flex-wrap:wrap;backdrop-filter:blur(4px);}
+    nav a{text-decoration:none;color:#8a7d6e;font-size:clamp(0.68rem,2.2vw,0.78rem);letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s;padding:4px 0;}
     nav a:hover,nav a.active{color:#c9a96e;}
 
-    .hero-wrap{text-align:center;padding:110px 20px 90px;}
+    .hero-wrap{text-align:center;padding:clamp(56px,12vw,110px) 20px clamp(44px,9vw,90px);}
     .hero{max-width:680px;margin:0 auto;}
-    .hero h2{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#f0ebe3;line-height:1.3;margin-bottom:22px;text-shadow:0 2px 20px rgba(0,0,0,0.6);}
-    .hero p{font-size:1rem;color:#a89880;line-height:1.9;margin-bottom:36px;}
-    .btn-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
-    .btn{display:inline-block;padding:13px 34px;text-decoration:none;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+    .hero h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:300;color:#f0ebe3;line-height:1.3;margin-bottom:clamp(14px,3vw,22px);text-shadow:0 2px 20px rgba(0,0,0,0.6);}
+    .hero p{font-size:clamp(0.88rem,2.5vw,1rem);color:#a89880;line-height:1.85;margin-bottom:clamp(24px,5vw,36px);}
+
+    .btn-row{display:flex;gap:clamp(10px,3vw,16px);justify-content:center;flex-wrap:wrap;}
+    .btn{display:inline-block;padding:clamp(11px,2.5vw,13px) clamp(22px,5vw,34px);text-decoration:none;font-size:clamp(0.72rem,2vw,0.78rem);letter-spacing:0.1em;text-transform:uppercase;border-radius:3px;transition:all 0.2s;min-width:140px;text-align:center;}
     .btn-primary{background:#c9a96e;color:#0e0c0a;}
     .btn-primary:hover{background:#a07840;}
     .btn-secondary{background:rgba(14,12,10,0.5);color:#c9a96e;border:1px solid #5a4a38;backdrop-filter:blur(4px);}
     .btn-secondary:hover{border-color:#c9a96e;background:rgba(14,12,10,0.7);}
 
-    /* Sold label strip below hero */
-    .sold-label{text-align:center;padding:0 20px 60px;font-size:0.72rem;color:#4a3f34;letter-spacing:0.2em;text-transform:uppercase;}
+    .sold-label{text-align:center;padding:0 20px clamp(32px,6vw,60px);font-size:0.72rem;color:#4a3f34;letter-spacing:0.2em;text-transform:uppercase;}
 
-    .divider{width:50px;height:1px;background:#c9a96e;margin:0 auto 80px;opacity:0.25;}
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(44,40,32,0.4);border-top:1px solid rgba(44,40,32,0.5);border-bottom:1px solid rgba(44,40,32,0.5);margin-bottom:90px;}
-    .feature{background:rgba(14,12,10,0.75);padding:48px 36px;text-align:center;backdrop-filter:blur(2px);}
+    .divider{width:50px;height:1px;background:#c9a96e;margin:0 auto clamp(44px,8vw,80px);opacity:0.25;}
+
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1px;background:rgba(44,40,32,0.4);border-top:1px solid rgba(44,40,32,0.5);border-bottom:1px solid rgba(44,40,32,0.5);margin-bottom:clamp(44px,8vw,90px);}
+    .feature{background:rgba(14,12,10,0.75);padding:clamp(28px,6vw,48px) clamp(20px,4vw,36px);text-align:center;backdrop-filter:blur(2px);}
     .feature-icon{font-size:1.2rem;color:#c9a96e;margin-bottom:16px;opacity:0.6;}
-    .feature h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:#e8dfd0;margin-bottom:10px;letter-spacing:0.05em;}
-    .feature p{font-size:0.82rem;color:#6a5f52;line-height:1.8;}
-    .cta{text-align:center;padding:0 20px 100px;}
-    .cta h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:#c9a96e;margin-bottom:14px;letter-spacing:0.08em;}
-    .cta p{font-size:0.85rem;color:#6a5f52;margin-bottom:28px;line-height:1.8;}
-    footer{text-align:center;padding:36px 20px;color:#3a342c;font-size:0.78rem;border-top:1px solid rgba(26,22,18,0.8);background:rgba(10,8,6,0.6);}
-    @media(max-width:640px){.features{grid-template-columns:1fr;}header h1{font-size:2.4rem;}.hero h2{font-size:2rem;}}
+    .feature h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,3vw,1.15rem);font-weight:400;color:#e8dfd0;margin-bottom:10px;letter-spacing:0.05em;}
+    .feature p{font-size:clamp(0.78rem,2.2vw,0.82rem);color:#6a5f52;line-height:1.8;}
+
+    .cta{text-align:center;padding:0 20px clamp(56px,10vw,100px);}
+    .cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,4vw,1.9rem);font-weight:300;color:#c9a96e;margin-bottom:14px;letter-spacing:0.08em;}
+    .cta p{font-size:clamp(0.8rem,2.2vw,0.85rem);color:#6a5f52;margin-bottom:clamp(18px,4vw,28px);line-height:1.8;}
+
+    footer{text-align:center;padding:clamp(24px,5vw,36px) 20px;color:#3a342c;font-size:0.78rem;border-top:1px solid rgba(26,22,18,0.8);background:rgba(10,8,6,0.6);}
+
+    @media(max-width:480px){
+      .btn-row{flex-direction:column;align-items:center;}
+      .btn{width:100%;max-width:280px;}
+    }
   </style>
 </head>
 <body>
@@ -101,12 +106,8 @@
   var allSrcs = ["slideshow/mine.jpg","slideshow/nambuwa.jpg","slideshow/river.jpg"];
   if (!allSrcs.length) return;
 
-  // Shuffle (Fisher-Yates)
-  var srcs = allSrcs.slice();
-  for (var i = srcs.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var tmp = srcs[i]; srcs[i] = srcs[j]; srcs[j] = tmp;
-  }
+  // Shuffle
+  var srcs = allSrcs.slice().sort(function(){ return Math.random() - 0.5; });
 
   var container = document.getElementById('bg-slideshow');
   var overlay = container.querySelector('.bg-overlay');
@@ -127,10 +128,8 @@
       if (loaded === 1) {
         // Show first slide immediately
         div.classList.add('active');
-      }
-      // Start timer only once a second slide has actually loaded
-      if (slides.length === 2) {
-        setInterval(next, 5000);
+        // Start timer only after first image loads
+        if (srcs.length > 1) setInterval(next, 5000);
       }
     };
     img.src = src;
@@ -143,6 +142,6 @@
     slides[current].classList.add('active');
   }
 })();
-</script>
+</' + 'script>
 </body>
 </html>
