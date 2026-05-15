@@ -3,55 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <title>Maniké — Our Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Jost',sans-serif;background:#0e0c0a;color:#f0ebe3;min-height:100vh;}
-  header{text-align:center;padding:50px 20px 30px;border-bottom:1px solid #2c2820;}
-  header h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;letter-spacing:0.2em;color:#c9a96e;}
-  header p{margin-top:8px;font-size:0.85rem;color:#7a6e62;letter-spacing:0.1em;}
-  nav{display:flex;justify-content:center;gap:clamp(14px,3vw,36px);padding:clamp(12px,2vw,18px) 16px;background:#111;border-bottom:1px solid #2c2820;flex-wrap:wrap;}
-  nav a{transition:color 0.2s;text-decoration:none;color:#8a7d6e;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;}
-  nav a:hover,nav a.active{color:#c9a96e;}
-  .hero{max-width:700px;margin:clamp(40px,8vw,80px) auto clamp(30px,5vw,60px);padding:0 clamp(16px,5vw,40px);text-align:center;}
-  .hero h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;line-height:1.3;color:#e8dfd0;margin-bottom:24px;}
-  .hero p{font-size:1rem;color:#8a7d6e;line-height:1.9;}
-  .divider{width:60px;height:1px;background:#c9a96e;margin:60px auto;opacity:0.4;}
-  .sections{max-width:800px;margin:0 auto;padding:0 clamp(16px,5vw,40px) clamp(50px,8vw,100px);}
-  .story-block{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px;}
-  .story-block.reverse{direction:rtl;}
-  .story-block.reverse > *{direction:ltr;}
-  .story-img{aspect-ratio:3/4;background:#171410;border:1px solid #2c2820;border-radius:6px;display:flex;align-items:center;justify-content:center;}
-  .story-img span{font-size:0.72rem;color:#5a4f40;letter-spacing:0.12em;text-align:center;padding:20px;}
-  .story-text h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:#c9a96e;margin-bottom:16px;letter-spacing:0.05em;}
-  .story-text p{font-size:0.9rem;color:#8a7d6e;line-height:1.9;margin-bottom:14px;}
-  .values{background:#111;border-top:1px solid #2c2820;border-bottom:1px solid #2c2820;padding:clamp(40px,8vw,80px) clamp(16px,5vw,40px);margin-bottom:clamp(40px,8vw,80px);}
-  .values-inner{max-width:900px;margin:0 auto;}
-  .values h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#c9a96e;text-align:center;margin-bottom:50px;letter-spacing:0.1em;}
-  .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(20px,4vw,40px);}
-  .value-item{text-align:center;}
-  .value-icon{font-size:1.4rem;color:#c9a96e;margin-bottom:12px;opacity:0.7;}
-  .value-item h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#e8dfd0;margin-bottom:8px;}
-  .value-item p{font-size:0.82rem;color:#6a5f52;line-height:1.8;}
-  .blog{max-width:800px;margin:0 auto clamp(40px,8vw,100px);padding:0 clamp(16px,5vw,40px);}
-  .blog h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#c9a96e;margin-bottom:40px;letter-spacing:0.1em;}
-  .post{border-bottom:1px solid #2c2820;padding:32px 0;}
-  .post:last-child{border-bottom:none;}
-  .post-date{font-size:0.72rem;color:#5a4f40;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
-  .post h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:#e8dfd0;margin-bottom:10px;}
-  .post p{font-size:0.85rem;color:#7a6e62;line-height:1.8;}
-  footer{text-align:center;padding:40px;color:#5a4f40;font-size:0.8rem;border-top:1px solid #2c2820;}
-  @media(max-width:700px){.story-block{grid-template-columns:1fr;}.story-block.reverse{direction:ltr;}.values-grid{grid-template-columns:1fr !important;}nav{gap:14px 20px;padding:12px;}}
-  @media(max-width:480px){.hero{padding:0 20px;}.sections{padding:0 20px 60px;}.blog{padding:0 20px;}.values{padding:50px 20px;}.hero h2{font-size:1.8rem;}}
-</style>
-<style>
-.page-content{animation:pageFadeIn 0.45s ease both;transition:opacity 0.28s ease,transform 0.28s ease;}
-.page-content.leaving{opacity:0;transform:translateY(-6px);}
-@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-</style>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap"></noscript>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Jost',sans-serif;background:#0e0c0a;color:#f0ebe3;min-height:100vh}header{text-align:center;padding:50px 20px 30px;border-bottom:1px solid #2c2820}header h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;letter-spacing:0.2em;color:#c9a96e}header p{margin-top:8px;font-size:0.85rem;color:#7a6e62;letter-spacing:0.1em}nav{display:flex;justify-content:center;gap:clamp(14px,3vw,36px);padding:clamp(12px,2vw,18px) 16px;background:#111;border-bottom:1px solid #2c2820;flex-wrap:wrap}nav a{transition:color 0.2s;text-decoration:none;color:#8a7d6e;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase}nav a:hover,nav a.active{color:#c9a96e}.hero{max-width:700px;margin:clamp(40px,8vw,80px) auto clamp(30px,5vw,60px);padding:0 clamp(16px,5vw,40px);text-align:center}.hero h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;line-height:1.3;color:#e8dfd0;margin-bottom:24px}.hero p{font-size:1rem;color:#8a7d6e;line-height:1.9}.divider{width:60px;height:1px;background:#c9a96e;margin:60px auto;opacity:0.4}.sections{max-width:800px;margin:0 auto;padding:0 clamp(16px,5vw,40px) clamp(50px,8vw,100px)}.story-block{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px}.story-block.reverse{direction:rtl}.story-block.reverse>*{direction:ltr}.story-img{aspect-ratio:3/4;background:#171410;border:1px solid #2c2820;border-radius:6px;display:flex;align-items:center;justify-content:center}.story-img span{font-size:0.72rem;color:#5a4f40;letter-spacing:0.12em;text-align:center;padding:20px}.story-text h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:#c9a96e;margin-bottom:16px;letter-spacing:0.05em}.story-text p{font-size:0.9rem;color:#8a7d6e;line-height:1.9;margin-bottom:14px}.values{background:#111;border-top:1px solid #2c2820;border-bottom:1px solid #2c2820;padding:clamp(40px,8vw,80px) clamp(16px,5vw,40px);margin-bottom:clamp(40px,8vw,80px)}.values-inner{max-width:900px;margin:0 auto}.values h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#c9a96e;text-align:center;margin-bottom:50px;letter-spacing:0.1em}.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(20px,4vw,40px)}.value-item{text-align:center}.value-icon{font-size:1.4rem;color:#c9a96e;margin-bottom:12px;opacity:0.7}.value-item h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#e8dfd0;margin-bottom:8px}.value-item p{font-size:0.82rem;color:#6a5f52;line-height:1.8}.blog{max-width:800px;margin:0 auto clamp(40px,8vw,100px);padding:0 clamp(16px,5vw,40px)}.blog h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#c9a96e;margin-bottom:40px;letter-spacing:0.1em}.post{border-bottom:1px solid #2c2820;padding:32px 0}.post:last-child{border-bottom:none}.post-date{font-size:0.72rem;color:#5a4f40;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px}.post h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:#e8dfd0;margin-bottom:10px}.post p{font-size:0.85rem;color:#7a6e62;line-height:1.8}footer{text-align:center;padding:40px;color:#5a4f40;font-size:0.8rem;border-top:1px solid #2c2820}@media(max-width:700px){.story-block{grid-template-columns:1fr}.story-block.reverse{direction:ltr}.values-grid{grid-template-columns:1fr !important}nav{gap:14px 20px;padding:12px}}@media(max-width:480px){.hero{padding:0 20px}.sections{padding:0 20px 60px}.blog{padding:0 20px}.values{padding:50px 20px}.hero h2{font-size:1.8rem}}</style>
+<style>.page-content{animation:pageFadeIn 0.25s ease both;transition:opacity 0.18s ease,transform 0.18s ease}.page-content.leaving{opacity:0;transform:translateY(-6px)}@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}</style>
 </head>
 <body>
   <div class="page-content">
@@ -104,20 +66,19 @@
 <footer><p>© 2026 Maniké. All rights reserved.</p></footer>
   </div><!-- end .page-content -->
 
-<script>
-(function(){
-  document.addEventListener('click',function(e){
-    var a=e.target.closest('a');
-    if(!a||!a.href)return;
-    var url=a.href;
-    if(a.target==='_blank'||url.startsWith('mailto:')||url.startsWith('tel:'))return;
-    try{var u=new URL(url);if(u.origin!==location.origin&&u.hostname!=='')return;}catch(err){return;}
-    var pc=document.querySelector('.page-content');
-    if(!pc)return;
-    e.preventDefault();
-    pc.classList.add('leaving');
-    setTimeout(function(){window.location.href=url;},300);
-  });
+<script>(function(){
+document.addEventListener('click',function(e){
+var a=e.target.closest('a');
+if(!a||!a.href)return;
+var url=a.href;
+if(a.target==='_blank'||url.startsWith('mailto:')||url.startsWith('tel:'))return;
+try{var u=new URL(url);if(u.origin!==location.origin&&u.hostname!=='')return;}catch(err){return;}
+var pc=document.querySelector('.page-content');
+if(!pc)return;
+e.preventDefault();
+pc.classList.add('leaving');
+setTimeout(function(){window.location.href=url;},300);
+});
 })();
 </script>
 </body>
