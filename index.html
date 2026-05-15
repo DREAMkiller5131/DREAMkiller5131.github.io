@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maniké — Unique Handcrafted Jewelry</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -15,7 +16,7 @@
     .bg-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2.5s ease-in-out;will-change:opacity;}
     .bg-slide.active{opacity:1;}
     .bg-overlay{position:absolute;inset:0;background:rgba(14,12,10,0.82);}
-    header,nav,.hero-wrap,.divider,.features,.cta,footer{position:relative;z-index:1;}
+    header,nav,.hero-wrap,.divider,.features,.cta,.sold-label,footer{position:relative;z-index:1;}
 
     header{text-align:center;padding:clamp(32px,7vw,60px) 20px clamp(20px,4vw,36px);border-bottom:1px solid rgba(44,40,32,0.6);background:rgba(14,12,10,0.5);}
     header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,8vw,3.2rem);font-weight:300;letter-spacing:0.15em;color:#c9a96e;}
@@ -104,9 +105,10 @@
 
 <script>
 (function(){
-  var allSrcs = [];
+  var allSrcs = ["slideshow/mine.jpg","slideshow/nambuwa.jpg","slideshow/river.jpg"];
   if (!allSrcs.length) return;
-  var srcs = allSrcs.slice().sort(function(){ return Math.random() - 0.5; });
+  var srcs = allSrcs.slice();
+  for (var i = srcs.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = srcs[i]; srcs[i] = srcs[j]; srcs[j] = t; }
   var container = document.getElementById('bg-slideshow');
   var overlay = container.querySelector('.bg-overlay');
   var current = 0;
@@ -123,7 +125,9 @@
       loaded++;
       if (loaded === 1) {
         div.classList.add('active');
-        if (srcs.length > 1) setInterval(next, 5000);
+      }
+      if (slides.length === 2) {
+        setInterval(next, 5000);
       }
     };
     img.src = src;
@@ -136,6 +140,6 @@
   }
   if (allSrcs.length >= 2) document.getElementById('sold-label').textContent = 'Previously sold pieces';
 })();
-</' + 'script>
+</script>
 </body>
 </html>
