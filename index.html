@@ -12,7 +12,7 @@
 
     /* ── Background slideshow ── */
     .bg-slideshow{position:fixed;inset:0;z-index:0;pointer-events:none;}
-    .bg-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2s ease-in-out;}
+    .bg-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2.5s ease-in-out;will-change:opacity;}
     .bg-slide.active{opacity:1;}
     .bg-overlay{position:absolute;inset:0;background:rgba(14,12,10,0.82);}
 
@@ -97,37 +97,44 @@
 
 <script>
 (function(){
-  const images = [];
-  const container = document.getElementById('bg-slideshow');
-  const overlay = container.querySelector('.bg-overlay');
-  const soldLabel = document.getElementById('sold-label');
-
-  if (!images.length) return;
+  var allSrcs = ["slideshow/mine.jpg","slideshow/nambuwa.jpg","slideshow/river.jpg"];
+  if (!allSrcs.length) return;
 
   // Shuffle
-  const shuffled = images.slice().sort(() => Math.random() - 0.5);
+  var srcs = allSrcs.slice().sort(function(){ return Math.random() - 0.5; });
 
-  // Build slide elements
-  const slides = shuffled.map(src => {
-    const div = document.createElement('div');
-    div.className = 'bg-slide';
-    div.style.backgroundImage = 'url(' + src + ')';
-    container.insertBefore(div, overlay);
-    return div;
+  var container = document.getElementById('bg-slideshow');
+  var overlay = container.querySelector('.bg-overlay');
+  var current = 0;
+  var slides = [];
+  var loaded = 0;
+
+  // Pre-load images, only use ones that actually exist
+  srcs.forEach(function(src) {
+    var img = new Image();
+    img.onload = function() {
+      var div = document.createElement('div');
+      div.className = 'bg-slide';
+      div.style.backgroundImage = 'url(' + src + ')';
+      container.insertBefore(div, overlay);
+      slides.push(div);
+      loaded++;
+      if (loaded === 1) {
+        // Show first slide immediately
+        div.classList.add('active');
+        // Start timer only after first image loads
+        if (srcs.length > 1) setInterval(next, 5000);
+      }
+    };
+    img.src = src;
   });
 
-  let current = 0;
-  slides[0].classList.add('active');
-  if (images.length >= 2) soldLabel.textContent = 'Previously sold pieces';
-
   function next() {
+    if (slides.length < 2) return;
     slides[current].classList.remove('active');
     current = (current + 1) % slides.length;
     slides[current].classList.add('active');
   }
-
-  // Change every 5 seconds — slow, atmospheric
-  setInterval(next, 5000);
 })();
 </' + 'script>
 </body>
