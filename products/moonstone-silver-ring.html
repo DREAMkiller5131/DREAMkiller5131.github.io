@@ -12,7 +12,7 @@ header{text-align:center;padding:40px 20px 24px;border-bottom:1px solid #2c2820;
 header h1{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;letter-spacing:0.2em;color:#c9a96e;}
 header p{margin-top:6px;font-size:0.82rem;color:#7a6e62;letter-spacing:0.1em;}
 nav{display:flex;justify-content:center;gap:34px;padding:16px;background:#111;border-bottom:1px solid #2c2820;flex-wrap:wrap;}
-nav a{text-decoration:none;color:#8a7d6e;font-size:0.76rem;letter-spacing:0.12em;text-transform:uppercase;}
+nav a{text-decoration:none;color:#7a6e62;font-size:0.76rem;letter-spacing:0.12em;text-transform:uppercase;}
 nav a:hover,nav a.active{color:#c9a96e;}
 .breadcrumb{max-width:1000px;margin:24px auto 0;padding:0 32px;font-size:0.74rem;color:#5a4f40;}
 .breadcrumb a{color:#7a6e62;text-decoration:none;}.breadcrumb a:hover{color:#c9a96e;}
@@ -21,22 +21,21 @@ nav a:hover,nav a.active{color:#c9a96e;}
 .gallery-main{aspect-ratio:1;background:#171410;border-radius:8px;overflow:hidden;position:relative;}
 .detail{padding-top:8px;}
 .detail-cat{font-size:0.72rem;color:#5a4f40;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;}
-.detail h1{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:#e8dfd0;line-height:1.2;margin-bottom:16px;}
-.price-row{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;}
+.detail h1{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:#f0ebe3;line-height:1.2;margin-bottom:16px;}
+.price-row{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;flex-wrap:wrap;}
 .price{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:#c9a96e;font-weight:300;}
 .price-orig{font-size:1rem;color:#5a4f40;text-decoration:line-through;}
-.badge{padding:3px 10px;border-radius:20px;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;}
-.badge-sale{background:#3a1e0a;color:#e8954a;border:1px solid #6b3a18;}
-.badge-sold{background:#1a0a0a;color:#c0392b;border:1px solid #5a1a1a;}
-.badge-unique{background:#1a1430;color:#9b8ed4;border:1px solid #3d2e6e;}
+.badge-sale{background:#3a1e0a;color:#e8954a;border:1px solid #6b3a18;padding:3px 10px;border-radius:20px;font-size:0.68rem;letter-spacing:0.08em;}
+.badge-sold{background:#1a0a0a;color:#c0392b;border:1px solid #5a1a1a;padding:3px 10px;border-radius:20px;font-size:0.68rem;letter-spacing:0.08em;}
+.badge-unique{background:#1a1430;color:#9b8ed4;border:1px solid #3d2e6e;padding:3px 10px;border-radius:20px;font-size:0.68rem;letter-spacing:0.08em;}
 .desc{font-size:0.9rem;color:#7a6e62;line-height:1.9;margin-bottom:28px;}
 .meta-table{width:100%;border-collapse:collapse;margin-bottom:28px;}
 .meta-table td{padding:9px 0;font-size:0.82rem;border-bottom:1px solid #1e1b17;}
 .meta-table td:first-child{color:#5a4f40;width:40%;letter-spacing:0.06em;text-transform:uppercase;font-size:0.72rem;}
-.meta-table td:last-child{color:#c8bfb4;}
+.meta-table td:last-child{color:#f0ebe3;}
 .enquire-btn{display:block;width:100%;padding:15px;background:#c9a96e;color:#0e0c0a;border:none;font-family:'Jost',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;border-radius:4px;cursor:pointer;text-align:center;text-decoration:none;transition:background 0.2s;margin-bottom:12px;}
 .enquire-btn:hover{background:#a07840;}
-.enquire-btn.sold{background:#2a2420;color:#5a4f40;cursor:not-allowed;}
+.enquire-btn.sold{background:#171410;color:#5a4f40;cursor:not-allowed;border:1px solid #2c2820;}
 .back-link{display:block;text-align:center;font-size:0.76rem;color:#5a4f40;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;}
 .back-link:hover{color:#c9a96e;}
 footer{text-align:center;padding:40px;color:#5a4f40;font-size:0.8rem;border-top:1px solid #2c2820;}
@@ -56,7 +55,7 @@ footer{text-align:center;padding:40px;color:#5a4f40;font-size:0.8rem;border-top:
 <div class="product">
   <div class="gallery">
     <div class="gallery-main" id="gallery-main">
-      <div style="width:100%;height:100%;background:#1a1712;display:flex;align-items:center;justify-content:center;"><span style="color:#5a4f40;font-size:0.82rem;letter-spacing:0.1em;">Photo coming soon</span></div>
+      <div style="width:100%;height:100%;background:#171410;display:flex;align-items:center;justify-content:center;"><span style="color:#5a4f40;font-size:0.82rem;letter-spacing:0.1em;">Photo coming soon</span></div>
       
     </div>
     
@@ -92,7 +91,7 @@ function showSlide(n) {
   var dots = document.querySelectorAll('[id^="dot-"]');
   var thumbs = document.querySelectorAll('[id^="thumb-"]');
   slides[currentSlide].style.display = 'none';
-  if(dots[currentSlide]) dots[currentSlide].style.background = '#3a342c';
+  if(dots[currentSlide]) dots[currentSlide].style.background = '#2c2820';
   if(thumbs[currentSlide]) thumbs[currentSlide].style.borderColor = 'transparent';
   currentSlide = (n + totalSlides) % totalSlides;
   slides[currentSlide].style.display = 'flex';
@@ -101,7 +100,6 @@ function showSlide(n) {
 }
 function nextSlide(){ showSlide(currentSlide + 1); }
 function prevSlide(){ showSlide(currentSlide - 1); }
-// Swipe support
 var tx = 0;
 document.getElementById('gallery-main').addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; });
 document.getElementById('gallery-main').addEventListener('touchend', function(e){
